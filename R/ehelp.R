@@ -65,6 +65,7 @@ ehelp <-function(fun){
 #' command.
 #' @param topic topic/or/function name to search for
 #' @param ...   same parameters as help()
+#' @export
 help <- function(topic, package = NULL, lib.loc = NULL, verbose = getOption("verbose"), 
 				try.all.packages = getOption("help.try.all.packages"), help_type = getOption("help_type")) {
 # help wrapper function to redirect the calls to help eitehr to our help.fn or the system help (utils::help)
