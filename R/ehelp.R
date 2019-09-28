@@ -44,7 +44,7 @@ ehelp <-function(fun){
 		for (kwrd in keywords) {
 			if (grepl(kwrd,fnLine)) {
 			
-				keys.count <- keys.count + keywords==kwrd	
+				#keys.count <- keys.count + keywords==kwrd
 			}
 		}
 	}
