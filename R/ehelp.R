@@ -7,7 +7,7 @@ ehelp <-function(fun){
 # and parse them into help and information messages using help()
 
     # define keywords to look for
-    keywords <- c("@FnName","@params","@usage","@author", "@email", "@repo", "@ref")
+    keywords <- c("@FnName","@param","@usage","@author", "@email", "@repo", "@ref")
     # keywords descriptions
     keys.descrp <- c("Function Name:", "Arguments:", "Usage:", "Author:", "Contact:", "Repository/URL:", "References:")
     # counters...
@@ -29,13 +29,13 @@ ehelp <-function(fun){
 		# get the current line and prune the "#'"
 		fnLine <- gsub("#'","",fnCorpus[i])
 		# check for parameters to the fni
-		if (grepl("@params",fnLine)) {
+		if (grepl("@param",fnLine)) {
 			if (length(fnArgs) == 0) {
 				cat("Arguments:", '\n')
 			}
-			argLine <- gsub("@params","",fnLine)
+			argLine <- gsub("@param","",fnLine)
 			cat('\t',argLine,'\n')
-			argFn <- gsub(".*@params (.+) \ .*", "\\1", fnLine)
+			argFn <- gsub(".*@param (.+) \ .*", "\\1", fnLine)
 			fnArgs <- c(fnArgs,argFn)
 		} else {
 			cat(fnLine,'\n')
