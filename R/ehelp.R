@@ -100,7 +100,7 @@ help <- function(topic, package = NULL, lib.loc = NULL, verbose = getOption("ver
 		# if not found will return NULL
 		fun <- get0(fn, .GlobalEnv, inherits=FALSE)
 		if (!is.null(fun) && fn != "help") {
-			#print(fun)
+			print(fun)
 			ehelp(fun)
 		} else {
 			# check whether the topic is in the actual R help system
