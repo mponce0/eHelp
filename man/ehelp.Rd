@@ -9,7 +9,7 @@ definied functions.}
 ehelp(fun)
 }
 \arguments{
-\item{function}{name of an user-defined function}
+\item{fun}{function name of an user-defined function}
 }
 \description{
 Enahnced-Help Function: ehelp()

@@ -7,6 +7,8 @@ Authors@R:
            role = c("aut", "cre"),
            email = "mponce@scinet.utoronto.ca",
            comment = c(ORCID = "YOUR-ORCID-ID"))
+Author: Marcelo Ponce [aut, cre], 
+Maintainer: Marcelo Ponce <mponce@scinet.utoronto.ca>
 Description: This package overloads the R help() function by allowing to use docstrings comments in user defined functions.
 License: GPL2
 Encoding: UTF-8

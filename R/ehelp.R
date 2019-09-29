@@ -1,7 +1,8 @@
 #' Enahnced-Help Function: ehelp()
 #' This function displays docstring style comments used as help liners for user
 #' definied functions. 
-#' @param function name of an user-defined function
+#' @param fun function name of an user-defined function
+#' @importFrom utils capture.output
 ehelp <-function(fun){
 # enhanced help function, capable of extracting "a-la docstring" comments
 # and parse them into help and information messages using help()
