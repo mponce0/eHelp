@@ -17,9 +17,9 @@ ehelp <-function(fun){
     }
 
     # define keywords to look for
-    keywords <- c("@FnName","@param","@usage","@author", "@email", "@repo", "@ref")
+    keywords <- c("@fnName","@param","@usage","@example","@author", "@email", "@repo", "@ref")
     # keywords descriptions
-    keys.descrp <- c("Function Name:", "Arguments:", "Usage:", "Author:", "Contact:", "Repository/URL:", "References:")
+    keys.descrp <- c("Function Name:", "Arguments: \n", "### Usage: \n", "### Examples: \n","Author:", "Contact:", "Repository/URL:", "References: \n")
     names(keys.descrp) <- keywords
     # counters...
     keys.count <- rep(0,length(keywords))
@@ -47,12 +47,13 @@ ehelp <-function(fun){
 		if (grepl("@param",fnLine)) {
 			#argFn <- gsub(".*@param (.+) \ .*", "\\1", fnLine)
 			# clean leading spaces, and then grab the first 'word' after @param
-			argFn <- gsub(".*@param\\s*| .*", "", sub("^\\s+", "", fnLine))
-			fnArgs <- c(fnArgs,argFn)
+			#argFn <- gsub(".*@param\\s*| .*", "", sub("^\\s+", "", fnLine))
+			#fnArgs <- c(fnArgs,argFn)
+			fnArgs <- c(fnArgs,firstWord(fnLine,"@param"))
 		}
 		# function name
-		if (grepl("@FnName",fnLine)) {
-			fnName <- firstWord(fnLine,"@FnName")
+		if (grepl("@fnName",fnLine)) {
+			fnName <- firstWord(fnLine,"@fnName")
 		}
 
 		# check for keywords in the helper lines...
@@ -61,7 +62,7 @@ ehelp <-function(fun){
 			if (grepl(kwrd,fnLine)) {
 				# check whether this is the first instance of this feature...
 				if (keys.count[kwrd] == 0) {
-					cat(keys.descrp[kwrd],'\n')
+					cat(keys.descrp[kwrd])
 				} 
 				curLine <- gsub(kwrd,"",fnLine)
 				cat('\t',curLine,'\n')
@@ -77,13 +78,14 @@ ehelp <-function(fun){
     }
 
     # summaryzing info...
-    if (keys.count["@FnName"] !=0) {
+    if (keys.count["@fnName"] !=0) {
 		cat('\n',' ',fnName)
-    } else {
+    } else if (keys.count["@param"] != 0) {
 		cat('\n',"List of Arguments: ")
     }
     if (keys.count["@param"] !=0) cat(paste0("(",paste0(fnArgs ,collapse=","),")"))
     cat('\n')
+    #print(fnArgs)
     #print(keys.count)
 }
 
