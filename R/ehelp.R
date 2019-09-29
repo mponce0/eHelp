@@ -11,8 +11,10 @@ ehelp <-function(fun){
     keywords <- c("@FnName","@param","@usage","@author", "@email", "@repo", "@ref")
     # keywords descriptions
     keys.descrp <- c("Function Name:", "Arguments:", "Usage:", "Author:", "Contact:", "Repository/URL:", "References:")
+    names(keys.descrp) <- keywords
     # counters...
     keys.count <- rep(0,length(keywords))
+    names(keys.count) <- keywords
 
     # first get the content of the function, i.e. its definition which should include the comments
     fnCorpus <- capture.output(print(fun))
@@ -20,7 +22,8 @@ ehelp <-function(fun){
     # identify the lines that contain the symbols "#'"
     helperCmts <- grepl("^[[:space:]]*#\'", fnCorpus)
 
-    # intialize some flags
+    # intialize some containers for important info...
+    fnName <- ""
     fnArgs <- c()
 
     #  loop over the fn. corpus
@@ -29,31 +32,46 @@ ehelp <-function(fun){
 	if (helperCmts[i]) {
 		# get the current line and prune the "#'"
 		fnLine <- gsub("#'","",fnCorpus[i])
-		# check for parameters to the fni
+
+		# some special cases to consider within the keywords: fnName & param
+		# check for parameters to the fn
 		if (grepl("@param",fnLine)) {
-			if (length(fnArgs) == 0) {
-				cat("Arguments:", '\n')
-			}
-			argLine <- gsub("@param","",fnLine)
-			cat('\t',argLine,'\n')
 			argFn <- gsub(".*@param (.+) \ .*", "\\1", fnLine)
 			fnArgs <- c(fnArgs,argFn)
-		} else {
-			cat(fnLine,'\n')
 		}
+		# function name
+		if (grepl("@param",fnLine)) {
+			fnName <- fnLine
+		}
+
 		# check for keywords in the helper lines...
+		flagKwrd <- FALSE
 		for (kwrd in keywords) {
 			if (grepl(kwrd,fnLine)) {
-			
-				#keys.count <- keys.count + keywords==kwrd
+				# check whether this is the first instance of this feature...
+				if (keys.count[kwrd] == 0) {
+					cat(keys.descrp[kwrd],'\n')
+				} 
+				curLine <- gsub(kwrd,"",fnLine)
+				cat('\t',curLine,'\n')
+				keys.count[kwrd] <- keys.count[kwrd] + 1
+				flagKwrd <- TRUE
 			}
+		}
+		if (!flagKwrd) {
+			# just a comment line without any keyword...
+			cat(fnLine,'\n')
 		}
 	}
     }
 
-    # also the usage
-    #fnDefn <- fnCorpus[grepl(fun,fnCorpus[grepl("<-",fnCorpus)])]
-    #cat(fnDefn)
+    # summaryzing info...
+    if (keys.count["@FnName"] !=0) cat(fnName)
+    if (keys.count["@param"] !=0) cat("(",fnArgs,")")
+    cat('\n')
+    print(keys.count)
+    print(argFn)
+    print(fnArgs)
 }
 
 
