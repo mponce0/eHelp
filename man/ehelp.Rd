@@ -2,9 +2,9 @@
 % Please edit documentation in R/ehelp.R
 \name{ehelp}
 \alias{ehelp}
-\title{Enahnced-Help Function: ehelp()
+\title{Enhanced-Help Function: ehelp()
 This function displays docstring style comments used as help liners for user
-definied functions.}
+defined functions.}
 \usage{
 ehelp(fun)
 }
@@ -12,7 +12,7 @@ ehelp(fun)
 \item{fun}{function name of an user-defined function}
 }
 \description{
-Enahnced-Help Function: ehelp()
+Enhanced-Help Function: ehelp()
 This function displays docstring style comments used as help liners for user
-definied functions.
+defined functions.
 }
