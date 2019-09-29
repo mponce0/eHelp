@@ -1,11 +1,20 @@
-#' Enahnced-Help Function: ehelp()
+#' Enhanced-Help Function: ehelp()
 #' This function displays docstring style comments used as help liners for user
-#' definied functions. 
+#' defined functions. 
 #' @param fun function name of an user-defined function
 #' @importFrom utils capture.output
 ehelp <-function(fun){
 # enhanced help function, capable of extracting "a-la docstring" comments
 # and parse them into help and information messages using help()
+
+
+    # internal function to obtain first word after a keyword...
+    firstWord <- function(strLine,kwrd) {
+	clean.leading.spaces <- sub("^\\s+", "", strLine)
+	pattern <- paste0(".*",kwrd,"\\s*| .*")
+	match <- gsub(pattern, "", clean.leading.spaces)
+	return(match)
+    }
 
     # define keywords to look for
     keywords <- c("@FnName","@param","@usage","@author", "@email", "@repo", "@ref")
@@ -36,12 +45,14 @@ ehelp <-function(fun){
 		# some special cases to consider within the keywords: fnName & param
 		# check for parameters to the fn
 		if (grepl("@param",fnLine)) {
-			argFn <- gsub(".*@param (.+) \ .*", "\\1", fnLine)
+			#argFn <- gsub(".*@param (.+) \ .*", "\\1", fnLine)
+			# clean leading spaces, and then grab the first 'word' after @param
+			argFn <- gsub(".*@param\\s*| .*", "", sub("^\\s+", "", fnLine))
 			fnArgs <- c(fnArgs,argFn)
 		}
 		# function name
-		if (grepl("@param",fnLine)) {
-			fnName <- fnLine
+		if (grepl("@FnName",fnLine)) {
+			fnName <- firstWord(fnLine,"@FnName")
 		}
 
 		# check for keywords in the helper lines...
@@ -66,12 +77,14 @@ ehelp <-function(fun){
     }
 
     # summaryzing info...
-    if (keys.count["@FnName"] !=0) cat(fnName)
-    if (keys.count["@param"] !=0) cat("(",fnArgs,")")
+    if (keys.count["@FnName"] !=0) {
+		cat('\n',' ',fnName)
+    } else {
+		cat('\n',"List of Arguments: ")
+    }
+    if (keys.count["@param"] !=0) cat(paste0("(",paste0(fnArgs ,collapse=","),")"))
     cat('\n')
-    print(keys.count)
-    print(argFn)
-    print(fnArgs)
+    #print(keys.count)
 }
 
 
