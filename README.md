@@ -13,6 +13,7 @@ The following keywords can be used to decorate and provide details as comments i
 ```
 @fnName :  provides the name of the function
 @param  :  list the arguments and its description of the arguments expected by the function
+@descr  :  general description of the function
 @usage  :  how the function is called
 @author :  name of the author(s) of the function
 @email  :  contact information of the author(s)
@@ -95,3 +96,6 @@ Author:	   author
 ### Usage: 
 	 myTestFn(x,y,z,t=0) 
 ```
+
+
+
