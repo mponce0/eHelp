@@ -32,8 +32,20 @@ compute3Dveloc <- function(x,y,z,t){
 #' @param z  vector of positions in the z-axis
 #' @param t  time vector corresponding to the position vector
 
+   # number of elements in vectors
+   n <- length(t)
+   # compute delta_t
+   delta_t <- t[2:n]-t[1:n-1]
+   # compute delta_x
+   delta_x <- x[2:n]-x[1:n-1]
+   # compute delta_y
+   delta_y <- y[2:n]-y[1:n-1]
+   # compute delta_z
+   delta_z <- z[2:n]-z[1:n-1]
    # do actual computation of velocity...
-   return(veloc)
+   veloc3D <- list(delta_x/delta_t, delta_y/delta_t, delta_z/delta_t)
+   # return value
+   return(veloc3D)
 }
 ```
 
