@@ -64,9 +64,9 @@ Arguments:
 ```
 
 
-Even when the @fnName and @params are not definied, the usage will be generated:
+Even when the @fnName and @params are not definied, the usage will be generated based on the actual function definition:
 ```
-myTestFn <- function(x,y,z,t) {
+myTestFn <- function(x,y,z,t=0) {
 #'
 #' This is just an example of a dummy fn
 #'
@@ -93,5 +93,5 @@ Author:	   author
 	   myTestFn(x0,y0,z0) 
 
 ### Usage: 
-	 myTestFn(x,y,z,t) 
+	 myTestFn(x,y,z,t=0) 
 ```
