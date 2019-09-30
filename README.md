@@ -3,7 +3,8 @@ Inspired by Python's a-la-docstring comments and the existant "docstring" R pack
 The main reason why we decided to create this package is because we noticed some issues with the already avaialable in R "docstring" package:
 * we have noticed that the package does not work with more than one function defined within a script
 * the package hasn't been updated or mantained since its creation in 2017 (https://github.com/dasonk/docstring)
-* we prefered to overload the "help()" function instead of the "?" one.
+* we prefered to overload the "help()" function instead of the "?" one, which we find more frequently used
+* another advantage of using the "help()" function, is that tab-completion works and we have overload the function so that it cascades down to the R utils::help() function when the user-defined function is not present in the working environment.
 
 Also, our package is simpler in the sense that does not attempt to generate roxygen based documentation for the user-defined functions but instead just display the information decorated with "#'" in the console.
 
@@ -50,7 +51,7 @@ compute3Dveloc <- function(x,y,z,t){
 ```
 
 ```
-> help(myFun)
+> help(compute3Dveloc)
 Function Name:	   compute3Dveloc
  this function computes the velocity of an object in a 3D space 
 Arguments: 
@@ -60,4 +61,37 @@ Arguments:
 	   t  time vector corresponding to the position vector 
 
    compute3Dveloc(x,y,z,t)
+```
+
+
+Even when the @fnName and @params are not definied, the usage will be generated based on the actual function definition:
+```
+myTestFn <- function(x,y,z,t=0) {
+#'
+#' This is just an example of a dummy fn
+#'
+#'
+#' @email myemail@somewhere.org
+#' @author author
+#
+#
+#' @demo
+#' @example myTestFn(x0,y0,z0)
+}
+```
+```
+> help(myTestFn)
+
+ This is just an example of a dummy fn 
+ 
+ 
+Contact:	   myemail@somewhere.org 
+Author:	   author
+ @demo 
+
+### Examples: 
+	   myTestFn(x0,y0,z0) 
+
+### Usage: 
+	 myTestFn(x,y,z,t=0) 
 ```
