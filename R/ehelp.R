@@ -2,13 +2,15 @@
 #' This function displays docstring style comments used as help liners for user
 #' defined functions. 
 #' @param fun function name of an user-defined function
+#' @param fn name of the function (string)
 #' @importFrom utils capture.output
-ehelp <-function(fun){
+ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 # enhanced help function, capable of extracting "a-la docstring" comments
 # and parse them into help and information messages using help()
 
 
     # internal function to obtain first word after a keyword...
+    #' @keywords internal
     firstWord <- function(strLine,kwrd) {
 	clean.leading.spaces <- sub("^\\s+", "", strLine)
 	pattern <- paste0(".*",kwrd,"\\s*| .*")
@@ -19,7 +21,7 @@ ehelp <-function(fun){
     # define keywords to look for
     keywords <- c("@fnName","@param","@usage","@example","@author", "@email", "@repo", "@ref")
     # keywords descriptions
-    keys.descrp <- c("Function Name:", "Arguments: \n", "### Usage: \n", "### Examples: \n","Author:", "Contact:", "Repository/URL:", "References: \n")
+    keys.descrp <- c("Function Name:", "Arguments: \n", "\n### Usage: \n", "\n### Examples: \n","Author:", "Contact:", "Repository/URL:", "References: \n")
     names(keys.descrp) <- keywords
     # counters...
     keys.count <- rep(0,length(keywords))
@@ -32,7 +34,8 @@ ehelp <-function(fun){
     helperCmts <- grepl("^[[:space:]]*#\'", fnCorpus)
 
     # intialize some containers for important info...
-    fnName <- ""
+    # for now use the name of the fn detetected in the wrapper function
+    fnName <- fn.name	#as.character(substitute(fun))
     fnArgs <- c()
 
     #  loop over the fn. corpus
@@ -78,11 +81,12 @@ ehelp <-function(fun){
     }
 
     # summaryzing info...
-    if (keys.count["@fnName"] !=0) {
-		cat('\n',' ',fnName)
-    } else if (keys.count["@param"] != 0) {
-		cat('\n',"List of Arguments: ")
-    }
+    if (keys.count["@usage"] == 0 ) cat(keys.descrp["@usage"])
+    #if (keys.count["@fnName"] !=0) {
+		cat('\t',fnName)
+    #} else if (keys.count["@param"] != 0) {
+    #		cat(keys.descrp["@param"])
+    #}
     if (keys.count["@param"] !=0) cat(paste0("(",paste0(fnArgs ,collapse=","),")"))
     cat('\n')
     #print(fnArgs)
@@ -98,7 +102,7 @@ ehelp <-function(fun){
 #' displayed it as help or information to the users using the help()
 #' command.
 #' @param topic topic/or/function name to search for
-#' @param ...   same parameters as help()
+#' @param "..."   same parameters as help()
 #' @export
 help <- function(topic, package = NULL, lib.loc = NULL, verbose = getOption("verbose"), 
 				try.all.packages = getOption("help.try.all.packages"), help_type = getOption("help_type")) {
@@ -134,8 +138,12 @@ help <- function(topic, package = NULL, lib.loc = NULL, verbose = getOption("ver
 		# if not found will return NULL
 		fun <- get0(fn, .GlobalEnv, inherits=FALSE)
 		if (!is.null(fun) && fn != "help") {
-			#print(fun)
-			ehelp(fun)
+			# check that it is indeed an user-defined fn
+			if (is.function(topic)) {
+				ehelp(topic,fn)
+			} else {
+				cat(paste0('"',fn,'"'), "defined in user-space memory but is NOT a function!",'\n\n')
+			}
 		} else {
 			# check whether the topic is in the actual R help system
 			return(original())
