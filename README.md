@@ -50,7 +50,7 @@ compute3Dveloc <- function(x,y,z,t){
 ```
 
 ```
-> help(myFun)
+> help(compute3Dveloc)
 Function Name:	   compute3Dveloc
  this function computes the velocity of an object in a 3D space 
 Arguments: 
@@ -60,4 +60,37 @@ Arguments:
 	   t  time vector corresponding to the position vector 
 
    compute3Dveloc(x,y,z,t)
+```
+
+
+Even when the @fnName and @params are not definied, the usage will be generated:
+```
+myTestFn <- function(x,y,z,t) {
+#'
+#' This is just an example of a dummy fn
+#'
+#'
+#' @email myemail@somewhere.org
+#' @author author
+#
+#
+#' @demo
+#' @example myTestFn(x0,y0,z0)
+}
+```
+```
+> help(myTestFn)
+
+ This is just an example of a dummy fn 
+ 
+ 
+Contact:	   myemail@somewhere.org 
+Author:	   author
+ @demo 
+
+### Examples: 
+	   myTestFn(x0,y0,z0) 
+
+### Usage: 
+	 myTestFn(x,y,z,t) 
 ```
