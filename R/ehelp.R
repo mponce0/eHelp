@@ -90,7 +90,8 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
     }
 
     # summaryzing info...
-    if (keys.count["@usage"] == 0 ) cat(keys.descrp["@usage"])
+    #if (keys.count["@usage"] == 0 )
+    cat(keys.descrp["@usage"])
     #if (keys.count["@fnName"] !=0) {
 		cat('\t',paste0(fnName,"(",fn.args,")"), '\n')
     #} else if (keys.count["@param"] != 0) {
