@@ -3,7 +3,8 @@ Inspired by Python's a-la-docstring comments and the existant "docstring" R pack
 The main reason why we decided to create this package is because we noticed some issues with the already avaialable in R "docstring" package:
 * we have noticed that the package does not work with more than one function defined within a script
 * the package hasn't been updated or mantained since its creation in 2017 (https://github.com/dasonk/docstring)
-* we prefered to overload the "help()" function instead of the "?" one.
+* we prefered to overload the "help()" function instead of the "?" one, which we find more frequently used
+* another advantage of using the "help()" function, is that tab-completion works and we have overload the function so that it cascades down to the R utils::help() function when the user-defined function is not present in the working environment.
 
 Also, our package is simpler in the sense that does not attempt to generate roxygen based documentation for the user-defined functions but instead just display the information decorated with "#'" in the console.
 
