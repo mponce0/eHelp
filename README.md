@@ -9,6 +9,7 @@ Also, our package is simpler in the sense that does not attempt to generate roxy
 
 The following keywords can be used to decorate and provide details as comments in user-defined functions:
 
+```
 @fnName :  provides the name of the function
 @param  :  list the arguments and its description of the arguments expected by the function
 @usage  :  how the function is called
@@ -16,5 +17,35 @@ The following keywords can be used to decorate and provide details as comments i
 @email  :  contact information of the author(s)
 @repo   :  repository where to get the function from
 @ref    :  any suitable reference needed
+```
 
 Further keywords can be added on-demand.
+
+## Examples
+
+```
+compute3Dveloc <- function(x,y,z,t){
+#' @fnName compute3Dveloc
+#' this function computes the velocity of an object in a 3D space
+#' @param x  vector of positions in the x-axis
+#' @param y  vector of positions in the y-axis
+#' @param z  vector of positions in the z-axis
+#' @param t  time vector corresponding to the position vector
+
+   # do actual computation of velocity...
+   return(veloc)
+}
+```
+
+```
+> help(myFun)
+Function Name:	   compute3Dveloc
+ this function computes the velocity of an object in a 3D space 
+Arguments: 
+	   x  vector of positions in the x-axis 
+	   y  vector of positions in the y-axis 
+	   z  vector of positions in the z-axis 
+	   t  time vector corresponding to the position vector 
+
+   compute3Dveloc(x,y,z,t)
+```
