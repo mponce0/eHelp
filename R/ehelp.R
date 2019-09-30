@@ -18,6 +18,14 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 	return(match)
     }
 
+    # internal function to obtain the arguments of the function
+    #' @keywords internal
+    getFnArgs <- function(line1) {
+        # grab all the content between parenthesis...
+	return( gsub("[\\(\\)]", "", regmatches(line1, gregexpr("\\(.*?\\)", line1))[[1]]) )
+    }
+
+
     # define keywords to look for
     keywords <- c("@fnName","@param","@usage","@example","@author", "@email", "@repo", "@ref")
     # keywords descriptions
@@ -29,6 +37,7 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 
     # first get the content of the function, i.e. its definition which should include the comments
     fnCorpus <- capture.output(print(fun))
+    fn.args <- getFnArgs(fnCorpus[1])
 
     # identify the lines that contain the symbols "#'"
     helperCmts <- grepl("^[[:space:]]*#\'", fnCorpus)
@@ -83,12 +92,12 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
     # summaryzing info...
     if (keys.count["@usage"] == 0 ) cat(keys.descrp["@usage"])
     #if (keys.count["@fnName"] !=0) {
-		cat('\t',fnName)
+		cat('\t',paste0(fnName,"(",fn.args,")"), '\n')
     #} else if (keys.count["@param"] != 0) {
     #		cat(keys.descrp["@param"])
     #}
-    if (keys.count["@param"] !=0) cat(paste0("(",paste0(fnArgs ,collapse=","),")"))
-    cat('\n')
+    #if (keys.count["@param"] !=0) cat(paste0("(",paste0(fnArgs ,collapse=","),")"))
+    #cat('\n')
     #print(fnArgs)
     #print(keys.count)
 }
