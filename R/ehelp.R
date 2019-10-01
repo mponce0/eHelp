@@ -27,9 +27,9 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 
 
     # define keywords to look for
-    keywords <- c("@fnName","@param","@usage","@example","@author", "@email", "@repo", "@ref")
+    keywords <- c("@fnName","@param","@descr","@usage","@example","@author", "@email", "@repo", "@ref")
     # keywords descriptions
-    keys.descrp <- c("Function Name:", "Arguments: \n", "\n### Usage: \n", "\n### Examples: \n","Author:", "Contact:", "Repository/URL:", "References: \n")
+    keys.descrp <- c("Function Name:", "Arguments: \n", "Description: \n","\n### Usage: \n", "\n### Examples: \n","Author:", "Contact:", "Repository/URL:", "References: \n")
     names(keys.descrp) <- keywords
     # counters...
     keys.count <- rep(0,length(keywords))
