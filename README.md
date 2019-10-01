@@ -1,12 +1,19 @@
-Inspired by Python's a-la-docstring comments and the existant "docstring" R package (https://cran.r-project.org/web/packages/docstring/vignettes/docstring_intro.html), this package attempts to offer similar functionalities by allowing comments "a-la-docstring" style to be displayed as help in user-defined functions. 
+### Introduction
+The "eHelp" (enhnaced-Help) package allow users to include "a-la-docstring" comments in their own functions and utilize the help() function to automatically provide documentation in the command line interface.
+
+Inspired by Python's a-la-docstring comments and the existant "docstring" R package (https://cran.r-project.org/web/packages/docstring/vignettes/docstring_intro.html), the package "eHelp" attempts to offer similar functionalities by allowing comments "a-la-docstring" style to be displayed as help in user-defined functions.
+
+The inclusion of "docstring" comments are an useful way of allowing developers to include comments and at the same time document their codes.
+Unfortunately such functionality is not included in the R core and basic features.
 
 The main reason why we decided to create this package is because we noticed some issues with the already avaialable in R "docstring" package:
-* we have noticed that the package does not work with more than one function defined within a script
+* we have noticed that the 'docstring' package does not work with more than one function defined within a script
+* sometimes the documentation is not updated even when the function is reloaded (ie. Windows OS)
 * the package hasn't been updated or mantained since its creation in 2017 (https://github.com/dasonk/docstring)
 * we prefered to overload the "help()" function instead of the "?" one, which we find more frequently used
 * another advantage of using the "help()" function, is that tab-completion works and we have overload the function so that it cascades down to the R utils::help() function when the user-defined function is not present in the working environment.
 
-Also, our package is simpler in the sense that does not attempt to generate roxygen based documentation for the user-defined functions but instead just display the information decorated with "#'" in the console.
+Also, the "eHelp" package is simpler in the sense that does not attempt to generate roxygen based documentation for the user-defined functions but instead just display the information decorated with "#'" directly in the console.
 
 The following keywords can be used to decorate and provide details as comments in user-defined functions:
 
@@ -22,6 +29,21 @@ The following keywords can be used to decorate and provide details as comments i
 ```
 
 Further keywords can be added on-demand.
+
+
+### Installation
+
+For using the eHelp package, you first need to install it, eg.
+```
+library(devtools)
+install_github("mponce0/eHelp")
+library(eHelp)
+```
+
+## How does it work?
+After loading "eHelp" the function help() from the R system will be overloaded by a wrapper function that allows to intersect the calls to the help() function.
+When the wrapper function detects that help is being invoqued in an user-defined function, then it offload the call to our own eHelp() function. The eHelp() function will parse the content of the inqiured function looking for comments decorated with #' and parse them depending on their content. In particular will take special care of the ones inclduing any of the keywords described before.
+
 
 ## Examples
 
