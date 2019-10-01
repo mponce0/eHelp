@@ -38,7 +38,8 @@ Further keywords can be added on-demand.
 
 ### Installation
 
-For using the eHelp package, you first need to install it, eg.
+For using the "eHelp" package, first you will need to install it.
+To obtain the latest version you can get it from the github repository, i.e.
 ```
 # need devtools for installing from the github repo
 library(devtools)
