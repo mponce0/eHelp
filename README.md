@@ -1,4 +1,4 @@
-### Introduction
+## Introduction
 The "eHelp" (enhnaced-Help) package allow users to include "a-la-docstring" comments in their own functions and utilize the help() function to automatically provide documentation in the command line interface.
 
 Inspired by Python's a-la-docstring comments and the existant "docstring" R package (https://cran.r-project.org/web/packages/docstring/vignettes/docstring_intro.html), the package "eHelp" attempts to offer similar functionalities by allowing comments "a-la-docstring" style to be displayed as help in user-defined functions.
@@ -35,12 +35,17 @@ Further keywords can be added on-demand.
 
 For using the eHelp package, you first need to install it, eg.
 ```
+# need devtools for installing from the github repo
 library(devtools)
+
+# install eHelp
 install_github("mponce0/eHelp")
+
+# load eHelp
 library(eHelp)
 ```
 
-## How does it work?
+### How does it work?
 After loading "eHelp" the function help() from the R system will be overloaded by a wrapper function that allows to intersect the calls to the help() function.
 When the wrapper function detects that help is being invoqued in an user-defined function, then it offload the call to our own eHelp() function. The eHelp() function will parse the content of the inqiured function looking for comments decorated with #' and parse them depending on their content. In particular will take special care of the ones inclduing any of the keywords described before.
 
