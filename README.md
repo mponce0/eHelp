@@ -13,7 +13,12 @@ The main reason why we decided to create this package is because we noticed some
 * we prefered to overload the "help()" function instead of the "?" one, which we find more frequently used
 * another advantage of using the "help()" function, is that tab-completion works and we have overload the function so that it cascades down to the R utils::help() function when the user-defined function is not present in the working environment.
 
-Also, the "eHelp" package is simpler in the sense that does not attempt to generate roxygen based documentation for the user-defined functions but instead just display the information decorated with "#'" directly in the console.
+### Features
+The "eHelp" package attempts to provide documentation for user-defined functions based on decorated "a-la-docstring" comments included in the function's defition.
+It does this employing a really "simple" approach, in the sense that does not attempt to generate roxygen based documentation for the user-defined functions, but instead it just displays the information decorated with  _#'_ directly into the console.
+This, we belive, in this particular case represents an advantage, specially considering that the package is aimed to provide help for user-defined functions. For instance, one of the reported issues with the "docstring" package is that the documentation generated wasn't updated after the user-definitions were updated and re-sourced. 
+
+An addtional feature of the "eHelp" package is that it will automatically generate an "usage" report, independently of whether the user specified it on the docstring-ed comments utilizing the "@usage" keyword. It does this, by inspecting the function's definition and parsing an expression with the function's name and list of arguments.
 
 The following keywords can be used to decorate and provide details as comments in user-defined functions:
 
