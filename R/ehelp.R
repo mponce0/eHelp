@@ -1,6 +1,9 @@
+# eHelp.R
+#  -- M.Ponce
+
 #' Enhanced-Help Function: ehelp()
 #' This function displays docstring style comments used as help liners for user
-#' defined functions. 
+#' defined functions.
 #' @param fun function name of an user-defined function
 #' @param fn name of the function (string)
 #' @importFrom utils capture.output
@@ -128,7 +131,6 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 }
 
 
-
 #' Wrapper Help Function
 #'
 #' This function is a wrapper around the R's system help() function.
@@ -140,7 +142,8 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 #' @export
 help <- function(topic, package = NULL, lib.loc = NULL, verbose = getOption("verbose"), 
 				try.all.packages = getOption("help.try.all.packages"), help_type = getOption("help_type")) {
-# help wrapper function to redirect the calls to help eitehr to our help.fn or the system help (utils::help)
+# help wrapper function to redirect the calls to help either to our help.fn or
+# the system help (utils::help)
 
     ###################################################################
     # this function is taken from the original "docstring" package,
