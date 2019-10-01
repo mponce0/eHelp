@@ -6,7 +6,7 @@ Inspired by Python's a-la-docstring comments and the existant "docstring" R pack
 The inclusion of "docstring" comments are an useful way of allowing developers to include comments and at the same time document their codes.
 Unfortunately such functionality is not included in the R core and basic features.
 
-The main reason why we decided to create this package is because we noticed some issues with the already avaialable in R "docstring" package:
+The main reason why we decided to create this package is because we noticed some issues with the already available in R "docstring" package:
 * we have noticed that the 'docstring' package does not work with more than one function defined within a script
 * sometimes the documentation is not updated even when the function is reloaded (ie. Windows OS)
 * the package hasn't been updated or mantained since its creation in 2017 (https://github.com/dasonk/docstring)
