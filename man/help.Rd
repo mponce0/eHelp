@@ -16,7 +16,7 @@ help(
 \arguments{
 \item{topic}{topic/or/function name to search for}
 
-\item{...}{same parameters as help()}
+\item{"..."}{same parameters as help()}
 }
 \description{
 This function is a wrapper around the R's system help() function.

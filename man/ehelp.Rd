@@ -6,13 +6,16 @@
 This function displays docstring style comments used as help liners for user
 defined functions.}
 \usage{
-ehelp(fun)
+ehelp(fun, fn.name = as.character(substitute(fun)))
 }
 \arguments{
 \item{fun}{function name of an user-defined function}
+
+\item{fn}{name of the function (string)}
 }
 \description{
 Enhanced-Help Function: ehelp()
 This function displays docstring style comments used as help liners for user
 defined functions.
 }
+\keyword{internal}
