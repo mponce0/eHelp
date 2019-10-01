@@ -51,6 +51,8 @@ When the wrapper function detects that help is being invoqued in an user-defined
 
 
 ## Examples
+All what is needed for eHelp to offer help in your own defined functions is to add comments including "#'" and its respective keywords.
+We offer below some examples, just recall to load the eHelp package before using help() with your own functions.
 
 ```
 compute3Dveloc <- function(x,y,z,t){
