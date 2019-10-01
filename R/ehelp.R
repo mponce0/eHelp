@@ -8,7 +8,7 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 # enhanced help function, capable of extracting "a-la docstring" comments
 # and parse them into help and information messages using help()
 
-
+    #############################################################
     # internal function to obtain first word after a keyword...
     #' @keywords internal
     firstWord <- function(strLine,kwrd) {
@@ -18,13 +18,36 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 	return(match)
     }
 
-    # internal function to obtain the arguments of the function
+    #################
+    # internal function to obtain the arguments of a function using text parsing
     #' @keywords internal
     getFnArgs <- function(line1) {
         # grab all the content between parenthesis...
 	return( gsub("[\\(\\)]", "", regmatches(line1, gregexpr("\\(.*?\\)", line1))[[1]]) )
     }
+    #################
 
+    # internal function to remove the function label and extra spaces
+    #' @keywords internal
+    OnlyArgs <- function(line1) {
+	# remove the word "function" from the string
+	Args <- gsub("function","",line1)
+	# remove leading and trailing spaces
+	onlyArgs <- gsub("^\\s+|\\s+$", "", Args)
+        return(onlyArgs)
+    }
+
+    # internal function to obtain arguments of a function using the "args()" fn
+    #' @keywords internal
+    FnArgs <- function(fun) {
+	# obtain arguments of fun
+	fnCall <- as.character(capture.output(args(fun)))
+	# collapse fn call into one line and exclude the "NULL" returned from args()
+	getArgs <- paste(fnCall[1:length(fnCall)-1], collpase="")
+	# remove the word function and leading/trailing spaces
+	return( OnlyArgs(getArgs) )
+    }
+    ##############################################################
 
     # define keywords to look for
     keywords <- c("@fnName","@param","@descr","@usage","@example","@author", "@email", "@repo", "@ref")
@@ -37,7 +60,8 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 
     # first get the content of the function, i.e. its definition which should include the comments
     fnCorpus <- capture.output(print(fun))
-    fn.args <- getFnArgs(fnCorpus[1])
+    # get the function arguments
+    fn.args <- FnArgs(fn.name)
 
     # identify the lines that contain the symbols "#'"
     helperCmts <- grepl("^[[:space:]]*#\'", fnCorpus)
@@ -93,7 +117,7 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
     #if (keys.count["@usage"] == 0 )
     cat(keys.descrp["@usage"])
     #if (keys.count["@fnName"] !=0) {
-		cat('\t',paste0(fnName,"(",fn.args,")"), '\n')
+		cat('\t',paste0(fnName,fn.args), '\n')
     #} else if (keys.count["@param"] != 0) {
     #		cat(keys.descrp["@param"])
     #}
