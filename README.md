@@ -3,10 +3,10 @@ The "eHelp" (enhnaced-Help) package allow users to include "a-la-docstring" comm
 
 Inspired by Python's a-la-docstring comments and the existant "docstring" R package (https://cran.r-project.org/web/packages/docstring/vignettes/docstring_intro.html), the package "eHelp" attempts to offer similar functionalities by allowing comments "a-la-docstring" style to be displayed as help in user-defined functions.
 
-The inclusion of "docstring" comments are an useful way of allowing developers to include comments and at the same time document their codes.
-Unfortunately such functionality is not included in the R core and basic features.
+The inclusion of "docstring" comments are an useful way of allowing programmers to include comments and at the same time document their codes.
+Unfortunately such functionality is not included in the R core and basic features for user-defined functions.
 
-The main reason why we decided to create this package is because we noticed some issues with the already available in R "docstring" package:
+The main reason why we decided to create this package is because we noticed several issues with the already available in R "docstring" package:
 * we have noticed that the 'docstring' package does not work with more than one function defined within a script
 * sometimes the documentation is not updated even when the function is reloaded (ie. Windows OS)
 * the package hasn't been updated or mantained since its creation in 2017 (https://github.com/dasonk/docstring)
@@ -17,6 +17,8 @@ The main reason why we decided to create this package is because we noticed some
 The "eHelp" package attempts to provide documentation for user-defined functions based on decorated "a-la-docstring" comments included in the function's defition.
 It does this employing a really "simple" approach, in the sense that does not attempt to generate roxygen based documentation for the user-defined functions, but instead it just displays the information decorated with  _#'_ directly into the console.
 This, we belive, in this particular case represents an advantage, specially considering that the package is aimed to provide help for user-defined functions. For instance, one of the reported issues with the "docstring" package is that the documentation generated wasn't updated after the user-definitions were updated and re-sourced. 
+
+Comments with docstrings should be included within the function definition, as eHelp will look into the body of the function for this type of comments.
 
 An addtional feature of the "eHelp" package is that it will automatically generate an "usage" report, independently of whether the user specified it on the docstring-ed comments utilizing the "@usage" keyword. It does this, by inspecting the function's definition and parsing an expression with the function's name and list of arguments.
 
@@ -42,10 +44,10 @@ For using the "eHelp" package, first you will need to install it.
 To obtain the latest version you can get it from the github repository, i.e.
 ```
 # need devtools for installing from the github repo
-library(devtools)
+install.packages("devtools")
 
 # install eHelp
-install_github("mponce0/eHelp")
+devtools::install_github("mponce0/eHelp")
 
 # load eHelp
 library(eHelp)
