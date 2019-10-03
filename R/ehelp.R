@@ -1,15 +1,16 @@
 # eHelp.R
 #  -- M.Ponce
 
+# Enhanced-Help Function: ehelp()
+# enhanced help function, capable of extracting "a-la docstring" comments
+# and parse them into help and information messages using help()
+ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 #' Enhanced-Help Function: ehelp()
 #' This function displays docstring style comments used as help liners for user
 #' defined functions.
 #' @param fun function name of an user-defined function
 #' @param fn name of the function (string)
 #' @importFrom utils capture.output
-ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
-# enhanced help function, capable of extracting "a-la docstring" comments
-# and parse them into help and information messages using help()
 
     #############################################################
     # internal function to obtain first word after a keyword...
@@ -143,6 +144,11 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 }
 
 
+# Wrapper Help Function
+# help wrapper function to redirect the calls to help either to our help.fn or
+# the system help (utils::help)
+help <- function(topic, package = NULL, lib.loc = NULL, verbose = getOption("verbose"), 
+				try.all.packages = getOption("help.try.all.packages"), help_type = getOption("help_type")) {
 #' Wrapper Help Function
 #'
 #' This function is a wrapper around the R's system help() function.
@@ -152,10 +158,6 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 #' @param topic topic/or/function name to search for
 #' @param "..."   same parameters as help()
 #' @export
-help <- function(topic, package = NULL, lib.loc = NULL, verbose = getOption("verbose"), 
-				try.all.packages = getOption("help.try.all.packages"), help_type = getOption("help_type")) {
-# help wrapper function to redirect the calls to help either to our help.fn or
-# the system help (utils::help)
 
     ###################################################################
     # this function is taken from the original "docstring" package,
