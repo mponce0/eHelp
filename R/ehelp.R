@@ -65,6 +65,8 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 
     # define keywords to look for
     keywords <- c("@fnName","@param","@descr","@usage","@example","@author", "@email", "@repo", "@ref")
+    # define keywords to avoid
+    kewrds.skip <- c("@keywords")
     # keywords descriptions
     keys.descrp <- c("Function Name:", "Arguments: \n", "Description: \n","\n### Usage: \n", "\n### Examples: \n","Author:", "Contact:", "Repository/URL:", "References: \n")
     names(keys.descrp) <- keywords
@@ -89,11 +91,11 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
     for (i in 1:length(helperCmts)) {
         # consider the lines marked as comments for help using "#'"
 	if (helperCmts[i]) {
-		print(helperCmts[i])
+		#DBG: print(helperCmts[i])
 		# get the current line and prune the "#'"
 		fnLine <- gsub("#'","",fnCorpus[i])
 
-		print(fnLine)
+		#DBG: print(fnLine)
 		# some special cases to consider within the keywords: fnName & param
 		# check for parameters to the fn
 		if (grepl("@param",fnLine)) {
