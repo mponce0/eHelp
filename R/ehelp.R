@@ -44,13 +44,23 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
     #' @keywords internal
     FnArgs <- function(fun) {
 	# obtain arguments of fun
-	fnCall <- as.character(capture.output(args(fun)))
+	fnCall <- gsub("^\\s+", "", as.character(capture.output(args(fun))))
 	# collapse fn call into one line and exclude the "NULL" returned from args()
-	getArgs <- paste(fnCall[1:length(fnCall)-1], collpase="")
+	# getArgs <- paste(fnCall[1:length(fnCall)-1], collpase="")
+	getArgs <- do.call(paste, c(as.list(fnCall[1:length(fnCall)-1]),collpase=""))
+	#print(getArgs)
 	# remove the word function and leading/trailing spaces
 	return( OnlyArgs(getArgs) )
     }
     ##############################################################
+
+    # check that there is an argument passed into the function
+    if (missing(fun)) {
+	stop("ehelp() requires the name of a function to be used as an argument.",
+		'\n',
+		"Try using ehelp(ehelp).",
+		'\n')
+    }
 
     # define keywords to look for
     keywords <- c("@fnName","@param","@descr","@usage","@example","@author", "@email", "@repo", "@ref")
@@ -78,9 +88,11 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
     for (i in 1:length(helperCmts)) {
         # consider the lines marked as comments for help using "#'"
 	if (helperCmts[i]) {
+		print(helperCmts[i])
 		# get the current line and prune the "#'"
 		fnLine <- gsub("#'","",fnCorpus[i])
 
+		print(fnLine)
 		# some special cases to consider within the keywords: fnName & param
 		# check for parameters to the fn
 		if (grepl("@param",fnLine)) {
@@ -164,6 +176,11 @@ help <- function(topic, package = NULL, lib.loc = NULL, verbose = getOption("ver
 
 	# capture the original call to the fn
 	originalCall <- match.call()
+
+	# check that there is an argument passed into the function
+	if (missing(topic)) {
+		stop("Please provide an argument to the help function!",'\n')
+	}
 
 	# check whether it is not help for an specific package or library
 	if (is.null(package) & is.null(lib.loc)) {
