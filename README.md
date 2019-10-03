@@ -3,8 +3,11 @@ The "eHelp" (enhnaced-Help) package allow users to include "a-la-docstring" comm
 
 Inspired by Python's a-la-docstring comments and the existant "docstring" R package (https://cran.r-project.org/web/packages/docstring/vignettes/docstring_intro.html), the package "eHelp" attempts to offer similar functionalities by allowing comments "a-la-docstring" style to be displayed as help in user-defined functions.
 
-The inclusion of "docstring" comments are an useful way of allowing programmers to include comments and at the same time document their codes.
-Unfortunately such functionality is not included in the R core and basic features for user-defined functions.
+Documenting code is among the "best practices" to follow when developing code in a professional manner, and even when guided  generation of documentation is possible while developing R packages, we still belive that offering users a tool that allows them to document their functions using docsting comments is useful.
+Moreover it can be used for teaching best practices while training coders that are just starting.
+
+The inclusion of "docstring" comments are an useful and easy way of allowing programmers to include comments and at the same time document their codes.
+Unfortunately such functionality is not present in the R core and basic features for user-defined functions.
 
 The main reason why we decided to create this package is because we noticed several issues with the already available in R "docstring" package:
 * we have noticed that the 'docstring' package does not work with more than one function defined within a script
