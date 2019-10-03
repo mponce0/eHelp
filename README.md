@@ -3,6 +3,7 @@ The "eHelp" (enhnaced-Help) package allow users to include "a-la-docstring" comm
 
 Inspired by Python's a-la-docstring comments and the existant "docstring" R package (https://cran.r-project.org/web/packages/docstring/vignettes/docstring_intro.html), the package "eHelp" attempts to offer similar functionalities by allowing comments "a-la-docstring" style to be displayed as help in user-defined functions.
 
+### Rationale
 Documenting code is among the "best practices" to follow when developing code in a professional manner, and even when guided  generation of documentation is possible while developing R packages, we still belive that offering users a tool that allows them to document their functions using docsting comments is useful.
 Moreover it can be used for teaching best practices while training coders that are just starting.
 
@@ -41,7 +42,7 @@ The following keywords can be used to decorate and provide details as comments i
 Further keywords can be added on-demand.
 
 
-### Installation
+## Installation
 
 For using the "eHelp" package, first you will need to install it.
 To obtain the latest version you can get it from the github repository, i.e.
@@ -56,9 +57,9 @@ devtools::install_github("mponce0/eHelp")
 library(eHelp)
 ```
 
-### How does it work?
-After loading "eHelp" the function help() from the R system will be overloaded by a wrapper function that allows to intersect the calls to the help() function.
-When the wrapper function detects that help is being invoqued in an user-defined function, then it offload the call to our own eHelp() function. The eHelp() function will parse the content of the inqiured function looking for comments decorated with #' and parse them depending on their content. In particular will take special care of the ones inclduing any of the keywords described before.
+## How does it work?
+After loading the "eHelp" package, the function help() from the R system will be overloaded ("masked") by a wrapper function that allows us to redirect the calls to the help() function either to our eHelp() function or to the R's core help() one.
+When the wrapper function detects that help is being invoqued in an user-defined function, then it offload the call to our own eHelp() function. The eHelp() function will parse the content of the inquired function looking for comments decorated with #' and parse them depending on their content. In particular, it will take special care of the comments including any of the keywords described above and the usage of the function.
 
 
 ## Examples
