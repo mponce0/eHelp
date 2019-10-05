@@ -48,6 +48,7 @@ Some keywords are explicited ignored, such as: "@keyword internal", "@importFrom
 ## Installation
 
 For using the "eHelp" package, first you will need to install it.
+
 To obtain the latest version you can get it from the github repository, i.e.
 ```
 # need devtools for installing from the github repo
