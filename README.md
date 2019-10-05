@@ -42,7 +42,7 @@ The following keywords can be used to decorate and provide details as comments i
 
 Further keywords can be added on-demand, please contact the developer if you would like to add other keywords to the list.
 
-Some keywords are explicited ignored, such as: "@keyword internal", "@importFrom", "@export"; as this won't contribute much to the usage of the user-defined functions.
+Some keywords are explicited ignored, such as: "@keyword internal", "@importFrom", "@export"; as these won't contribute much to the usage of the user-defined functions.
 
 
 ## Installation
