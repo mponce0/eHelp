@@ -9,8 +9,14 @@ Authors@R:
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Author: Marcelo Ponce [aut, cre], 
 Maintainer: Marcelo Ponce <mponce@scinet.utoronto.ca>
-Description: This package overloads the R help() function by allowing to use docstrings comments in user defined functions.
-License: GPL2
+Description: This package overloads the R help() function allowing users to use docstrings comments within their own defined functions.
+URL: https://github.com/mponce0/eHelp
+License: GPL (>=2)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.99.9001
+Suggests: 
+    testthat (>= 2.1.0),
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
