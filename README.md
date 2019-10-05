@@ -66,7 +66,7 @@ When the wrapper function detects that help is being invoqued in an user-defined
 
 
 ## Examples
-All what is needed for eHelp to offer help in your own defined functions is to add comments including "#'" and its respective keywords.
+All what is needed for eHelp to offer help in your own defined functions is to add comments including " #' " and its respective keywords.
 We offer below some examples, just recall to load the eHelp package before using help() with your own functions.
 
 ```
@@ -106,7 +106,7 @@ Arguments:
 	   t  time vector corresponding to the position vector 
 
 ### Usage:
-   compute3Dveloc( x, y, z, t)
+   compute3Dveloc(x, y, z, t)
 ```
 
 
@@ -139,7 +139,7 @@ Author:	   author
 	   myTestFn(x0,y0,z0) 
 
 ### Usage: 
-	 myTestFn( x, y, z, t = 0) 
+	 myTestFn(x, y, z, t = 0) 
 ```
 
 
