@@ -66,7 +66,7 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
     # define keywords to look for
     keywords <- c("@fnName","@param","@descr","@usage","@example","@author", "@email", "@repo", "@ref")
     # define keywords to avoid
-    kewrds.skip <- c("@keywords")
+    kwrds.skip <- c("@keywords","@keywords internal","@importFrom","@export")
     # keywords descriptions
     keys.descrp <- c("Function Name:", "Arguments: \n", "Description: \n","\n### Usage: \n", "\n### Examples: \n","Author:", "Contact:", "Repository/URL:", "References: \n")
     names(keys.descrp) <- keywords
@@ -125,8 +125,11 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 			}
 		}
 		if (!flagKwrd) {
-			# just a comment line without any keyword...
-			cat(fnLine,'\n')
+			# check whether the line does not include keywords to skip defined in kwrds.skip, eg. "@keywords internal"
+			if (sum(sapply(kwrds.skip, grepl, fnLine)) == 0) {
+				# just a comment line without any keyword...
+				cat(fnLine,'\n')
+			}
 		}
 	}
     }
