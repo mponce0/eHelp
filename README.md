@@ -105,7 +105,8 @@ Arguments:
 	   z  vector of positions in the z-axis 
 	   t  time vector corresponding to the position vector 
 
-   compute3Dveloc(x,y,z,t)
+### Usage:
+   compute3Dveloc( x, y, z, t)
 ```
 
 
@@ -138,7 +139,7 @@ Author:	   author
 	   myTestFn(x0,y0,z0) 
 
 ### Usage: 
-	 myTestFn(x,y,z,t=0) 
+	 myTestFn( x, y, z, t = 0) 
 ```
 
 
