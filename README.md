@@ -5,7 +5,8 @@ Inspired by Python's a-la-docstring comments and the existant "docstring" R pack
 
 ### Rationale
 Documenting code is among the "best practices" to follow when developing code in a professional manner, and even when guided  generation of documentation is possible while developing R packages, we still belive that offering users a tool that allows them to document their functions using docsting comments is useful.
-Moreover it can be used for teaching best practices while training coders that are just starting.
+
+Moreover it can be used for and instructing and teaching best practices while training coders that are just starting.
 
 The inclusion of "docstring" comments are an useful and easy way of allowing programmers to include comments and at the same time document their codes.
 Unfortunately such functionality is not present in the R core and basic features for user-defined functions.
@@ -18,13 +19,13 @@ The main reason why we decided to create this package is because we noticed seve
 * another advantage of using the "help()" function, is that tab-completion works and we have overload the function so that it cascades down to the R utils::help() function when the user-defined function is not present in the working environment.
 
 ### Features
-The "eHelp" package attempts to provide documentation for user-defined functions based on decorated "a-la-docstring" comments included in the function's defition.
-It does this employing a really "simple" approach, in the sense that does not attempt to generate roxygen based documentation for the user-defined functions, but instead it just displays the information decorated with  _#'_ directly into the console.
+The "eHelp" package attempts to provide documentation for user-defined functions based on decorated "a-la-docstring" comments included in the function's definition.
+It does this by employing a really "simple" approach in the sense that it does not attempt to generate roxygen based documentation for the user-defined functions, but instead it just displays the information decorated with  _#'_ directly into the console.
 This, we belive, in this particular case represents an advantage, specially considering that the package is aimed to provide help for user-defined functions. For instance, one of the reported issues with the "docstring" package is that the documentation generated wasn't updated after the user-definitions were updated and re-sourced. 
 
 Comments with docstrings should be included within the function definition, as eHelp will look into the body of the function for this type of comments.
 
-An addtional feature of the "eHelp" package is that it will automatically generate an "usage" report, independently of whether the user specified it on the docstring-ed comments utilizing the "@usage" keyword. It does this, by inspecting the function's definition and parsing an expression with the function's name and list of arguments.
+An additional feature of the "eHelp" package is that it will automatically generate an "usage" report, independently of whether the user specified it on the docstring-ed comments utilizing the "@usage" keyword. It does this, by inspecting the function's definition and parsing an expression with the function's name and list of arguments.
 
 The following keywords can be used to decorate and provide details as comments in user-defined functions:
 
@@ -39,7 +40,9 @@ The following keywords can be used to decorate and provide details as comments i
 @ref    :  any suitable reference needed
 ```
 
-Further keywords can be added on-demand.
+Further keywords can be added on-demand, please contact the developer if you would like to add other keywords to the list.
+
+Some keywords are explicited ignored, such as: "@keyword internal", "@importFrom", "@export"; as this won't contribute much to the usage of the user-defined functions.
 
 
 ## Installation
