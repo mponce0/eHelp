@@ -160,8 +160,15 @@ help <- function(topic, package = NULL, lib.loc = NULL, verbose = getOption("ver
 #' It allows the user to include docstring styles documentation and
 #' displayed it as help or information to the users using the help()
 #' command.
-#' @param topic topic/or/function name to search for
-#' @param "..."   same parameters as help()
+#'
+#' Parameters are the same as in utils::help, see help(help,package='utils') for further details.
+#'
+#' @param topic    topic/or/function name to search for
+#' @param package  package where to search
+#' @param lib.loc  location of R libraries
+#' @param verbose  for diplaying the filename
+#' @param try.all.packages attempt to go trough all installed packages
+#' @param help_type format of the displayed help (text,html, or pdf)
 #' @export
 
     ###################################################################

@@ -16,11 +16,22 @@ help(
 \arguments{
 \item{topic}{topic/or/function name to search for}
 
-\item{"..."}{same parameters as help()}
+\item{package}{package where to search}
+
+\item{lib.loc}{location of R libraries}
+
+\item{verbose}{for diplaying the filename}
+
+\item{try.all.packages}{attempt to go trough all installed packages}
+
+\item{help_type}{format of the displayed help (text,html, or pdf)}
 }
 \description{
 This function is a wrapper around the R's system help() function.
 It allows the user to include docstring styles documentation and
 displayed it as help or information to the users using the help()
 command.
+}
+\details{
+Parameters are the same as in utils::help, see help(help,package='utils') for further details.
 }
