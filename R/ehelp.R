@@ -10,7 +10,26 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 #' defined functions.
 #' @param fun function name of an user-defined function
 #' @param fn name of the function (string)
+#'
 #' @importFrom utils capture.output
+#'
+#' @examples
+#' myTestFn <- function(x,y,z,t=0) {
+#' #'
+#' #' This is just an example of a dummy fn
+#' #'
+#' #'
+#' #' @email myemail@somewhere.org
+#' #' @author author
+#' #
+#' #
+#' #' @demo
+#' #' @example myTestFn(x0,y0,z0)
+#' }
+#' 
+#' ehelp(myTestFn)
+#'
+#' @export
 
     #############################################################
     # internal function to obtain first word after a keyword...
@@ -169,6 +188,34 @@ help <- function(topic, package = NULL, lib.loc = NULL, verbose = getOption("ver
 #' @param verbose  for diplaying the filename
 #' @param try.all.packages attempt to go trough all installed packages
 #' @param help_type format of the displayed help (text,html, or pdf)
+#'
+#' @examples
+#' compute3Dveloc <- function(x,y,z,t){
+#' #' @fnName compute3Dveloc
+#' #' this function computes the velocity of an object in a 3D space
+#' #' @param x  vector of positions in the x-axis
+#' #' @param y  vector of positions in the y-axis
+#' #' @param z  vector of positions in the z-axis
+#' #' @param t  time vector corresponding to the position vector
+#'
+#'    # number of elements in vectors
+#'    n <- length(t)
+#'    # compute delta_t
+#'    delta_t <- t[2:n]-t[1:n-1]
+#'    # compute delta_x
+#'    delta_x <- x[2:n]-x[1:n-1]
+#'    # compute delta_y
+#'    delta_y <- y[2:n]-y[1:n-1]
+#'    # compute delta_z
+#'    delta_z <- z[2:n]-z[1:n-1]
+#'    # do actual computation of velocity...
+#'    veloc3D <- list(delta_x/delta_t, delta_y/delta_t, delta_z/delta_t)
+#'    # return value
+#'    return(veloc3D)
+#' }
+#'
+#' help(compute3Dveloc)
+#'
 #' @export
 
     ###################################################################
