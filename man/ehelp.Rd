@@ -18,4 +18,21 @@ Enhanced-Help Function: ehelp()
 This function displays docstring style comments used as help liners for user
 defined functions.
 }
+\examples{
+myTestFn <- function(x,y,z,t=0) {
+#'
+#' This is just an example of a dummy fn
+#'
+#'
+#' @email myemail@somewhere.org
+#' @author author
+#
+#
+#' @demo
+#' @example myTestFn(x0,y0,z0)
+}
+
+ehelp(myTestFn)
+
+}
 \keyword{internal}

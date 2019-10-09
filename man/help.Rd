@@ -35,3 +35,31 @@ command.
 \details{
 Parameters are the same as in utils::help, see help(help,package='utils') for further details.
 }
+\examples{
+compute3Dveloc <- function(x,y,z,t){
+#' @fnName compute3Dveloc
+#' this function computes the velocity of an object in a 3D space
+#' @param x  vector of positions in the x-axis
+#' @param y  vector of positions in the y-axis
+#' @param z  vector of positions in the z-axis
+#' @param t  time vector corresponding to the position vector
+
+   # number of elements in vectors
+   n <- length(t)
+   # compute delta_t
+   delta_t <- t[2:n]-t[1:n-1]
+   # compute delta_x
+   delta_x <- x[2:n]-x[1:n-1]
+   # compute delta_y
+   delta_y <- y[2:n]-y[1:n-1]
+   # compute delta_z
+   delta_z <- z[2:n]-z[1:n-1]
+   # do actual computation of velocity...
+   veloc3D <- list(delta_x/delta_t, delta_y/delta_t, delta_z/delta_t)
+   # return value
+   return(veloc3D)
+}
+
+help(compute3Dveloc)
+
+}
