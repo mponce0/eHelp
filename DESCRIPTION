@@ -1,6 +1,6 @@
 Package: ehelp
 Title: Enhanced Help for Allowing "Docstring" Style Comments in Users Functions
-Version: 0.0.0.9000
+Version: 1.0
 Authors@R: 
     person(given = "Marcelo",
            family = "Ponce",
@@ -10,6 +10,7 @@ Author: Marcelo Ponce [aut, cre]
 Maintainer: Marcelo Ponce <mponce@scinet.utoronto.ca>
 Description: By overloading the R help() function, this package allows users to use "docstring" style comments within their own defined functions.
 URL: https://github.com/mponce0/eHelp
+BugReports: https://github.com/mponce0/eHelp/issues
 License: GPL (>=2)
 Encoding: UTF-8
 LazyData: true
