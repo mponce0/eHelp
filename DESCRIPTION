@@ -1,5 +1,5 @@
 Package: ehelp
-Title: Enhanced Help for Allowing "Docstring" Style Comments in Users Functions
+Title: Enhanced Help to Enable "Docstring"-Comments in Users Functions
 Version: 1.0
 Authors@R: 
     person(given = "Marcelo",
