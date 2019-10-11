@@ -48,6 +48,7 @@ Some keywords are explicited ignored, such as: "@keyword internal", "@importFrom
 We have included extended functionalities to the "ehelp()" function, which allows the user to display the information about the requested function using highlighting features.
 For such functionalities to work you will have to use
    ```ehelp(Name.of.Function, coloring=TRUE)```
+and it requires that "crayon" package is available in the system.
 
 
 ## Installation
