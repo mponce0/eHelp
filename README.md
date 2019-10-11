@@ -44,6 +44,11 @@ Further keywords can be added on-demand, please contact the developer if you wou
 
 Some keywords are explicited ignored, such as: "@keyword internal", "@importFrom", "@export"; as these won't contribute much to the usage of the user-defined functions.
 
+### Highlighting
+We have included extended functionalities to the "ehelp()" function, which allows the user to display the information about the requested function using highlighting features.
+For such functionalities to work you will have to use
+   ```ehelp(Name.of.Function, coloring=TRUE)```
+
 
 ## Installation
 
