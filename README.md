@@ -134,6 +134,7 @@ myTestFn <- function(x,y,z,t=0) {
 ```
 ```
 > help(myTestFn)
+Function Name:	   myTestFn 
 
  This is just an example of a dummy fn 
  
@@ -151,7 +152,24 @@ Author:	   author
 
 
 
-It is also possible to invoque the "ehelp()" directly, and in that way you further options are available:
+It is also possible to invoque the "ehelp()" function directly, and in that way further options are available:
 ```
 > help(myTestFn, coloring=TRUE)
+Function Name:	   myTestFn 
+ 
+ This fn does not do anything other than having docstrings comments 
+ 
+Arguments: 
+	   x BH position in x-axis 
+	   y BH position in y-axis 
+	   z BH position in z-axis 
+	   t time to merger 
+ 
+Contact:	   mponcec@gmail.com 
+Author:	   mponce 
+ @demo 
+ @example myBHFn(x0,y0,z0) 
+
+### Usage: 
+	myTestFn(x, y, z, t, W)
 ```
