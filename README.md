@@ -151,3 +151,7 @@ Author:	   author
 
 
 
+It is also possible to invoque the "ehelp()" directly, and in that way you further options are available:
+```
+> help(myTestFn, coloring=TRUE)
+```
