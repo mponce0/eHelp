@@ -155,18 +155,18 @@ Author:	   author
 It is also possible to invoque the "ehelp()" function directly, and in that way further options are available:
 ```
 > help(myTestFn, coloring=TRUE)
-Function Name:	   myTestFn 
+__Function Name:__	   myTestFn 
 
  This is just an example of a dummy fn 
  
  
-Contact:	   myemail@somewhere.org 
-Author:	   author
+__Contact:__	   myemail@somewhere.org 
+__Author:__	   author
  @demo 
 
-### Examples: 
+### Examples:
 	   myTestFn(x0,y0,z0) 
 
-### Usage: 
+__### Usage:__
 	 myTestFn(x, y, z, t = 0)
 ```
