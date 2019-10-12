@@ -6,10 +6,19 @@
 This function displays docstring style comments used as help liners for user
 defined functions.}
 \usage{
-ehelp(fun, fn.name = as.character(substitute(fun)))
+ehelp(
+  fun,
+  fn.name = as.character(substitute(fun)),
+  coloring = FALSE,
+  testing = FALSE
+)
 }
 \arguments{
 \item{fun}{function name of an user-defined function}
+
+\item{coloring}{a Boolean flag indicating whether to use colors for displaying messages}
+
+\item{testing}{a Boolean variable, indicating whether the help fn is being tested (information sent to the console will be done using cat() instead of message())}
 
 \item{fn}{name of the function (string)}
 }
@@ -29,10 +38,14 @@ myTestFn <- function(x,y,z,t=0) {
 #
 #
 #' @demo
-#' @example myTestFn(x0,y0,z0)
+#' @examples myTestFn(x0,y0,z0)
 }
 
 ehelp(myTestFn)
+
+## this requires the "crayon" package to work
+ehelp(myTestFn, coloring=TRUE)
+
 
 }
 \keyword{internal}

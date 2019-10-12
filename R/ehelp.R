@@ -4,12 +4,14 @@
 # Enhanced-Help Function: ehelp()
 # enhanced help function, capable of extracting "a-la docstring" comments
 # and parse them into help and information messages using help()
-ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
+ehelp <-function(fun, fn.name=as.character(substitute(fun)), coloring=FALSE, testing=FALSE) {
 #' Enhanced-Help Function: ehelp()
 #' This function displays docstring style comments used as help liners for user
 #' defined functions.
 #' @param fun function name of an user-defined function
 #' @param fn name of the function (string)
+#' @param coloring a Boolean flag indicating whether to use colors for displaying messages
+#' @param testing a Boolean variable, indicating whether the help fn is being tested (information sent to the console will be done using cat() instead of message())
 #'
 #' @importFrom utils capture.output
 #'
@@ -24,10 +26,14 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 #' #
 #' #
 #' #' @demo
-#' #' @example myTestFn(x0,y0,z0)
+#' #' @examples myTestFn(x0,y0,z0)
 #' }
 #' 
 #' ehelp(myTestFn)
+#'
+#' ## this requires the "crayon" package to work
+#' ehelp(myTestFn, coloring=TRUE)
+#'
 #'
 #' @export
 
@@ -72,7 +78,53 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 	# remove the word function and leading/trailing spaces
 	return( OnlyArgs(getArgs) )
     }
+
+    ################# internal functions for checks ###############################
+
+    # internal function to check whether packages are available and load them
+    #' @importFrom utils installed.packages 
+    #' @keywords internal
+    check_pkg <- function(pckg) {
+	# if package is installed locally then load
+	if (pckg %in% rownames(installed.packages())) {
+		do.call('library', list(pckg))
+		return(TRUE)
+	} else  {
+		return(FALSE)
+	}
+    }
+
+    ##################
+
+    # internal function to check that a fn is present in the Global environment
+    # NEEDS FIX TO parse the fn name
+    checkFnGE <- function(fun, fn.name=as.character(substitute(fun)) ) {
+	print(fn.name)
+        # check whether the fn is an user-defined fn defined in the global environment
+        # if not found will return NULL
+        fun <- get0(fn.name, .GlobalEnv, inherits=FALSE)
+        if (is.null(fun)) {
+		stop(paste0('"',fn.name,'"'), " not present (not defined) in the current session!",'\n\n')
+	} else if(!is.function(fun)){
+		stop(paste0('"',fn.name,'"'), " defined in user-space memory but is NOT a function!",'\n\n')
+	}
+    }
+
     ##############################################################
+
+    # internal function to switch between commands to display information into console
+    #' @keywords internal
+    xcat <- function(msg,appendLF=FALSE, testing=FALSE){
+	if (!testing) {
+		message(msg,appendLF=appendLF)
+        } else {
+		cat(msg)
+	}
+    }
+
+    ##############################################################
+    ##############################################################
+
 
     # check that there is an argument passed into the function
     if (missing(fun)) {
@@ -80,10 +132,25 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 		'\n',
 		"Try using ehelp(ehelp).",
 		'\n')
+    } else {
+	# check that the function received actually exists in global space
+	#checkFnGE(fun)
+        fn <- get0(fn.name, .GlobalEnv, inherits=FALSE)
+        if (is.null(fn)) {
+                stop(paste0('"',fn.name,'"'), " not present (not defined) in the current session!",'\n\n')
+        } else if(!is.function(fun)){
+                stop(paste0('"',fn.name,'"'), " defined in user-space memory but is NOT a function!",'\n\n')
+        }
+
     }
 
+
+    # check coloring... if it is set to TRUE, then attempt to load 'crayon'...
+    if (coloring) coloring <- check_pkg("crayon")
+
+
     # define keywords to look for
-    keywords <- c("@fnName","@param","@descr","@usage","@example","@author", "@email", "@repo", "@ref")
+    keywords <- c("@fnName","@param","@descr","@usage","@@examples","@author", "@email", "@repo", "@ref")
     # define keywords to avoid
     kwrds.skip <- c("@keywords","@keywords internal","@importFrom","@export")
     # keywords descriptions
@@ -135,10 +202,14 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 			if (grepl(kwrd,fnLine)) {
 				# check whether this is the first instance of this feature...
 				if (keys.count[kwrd] == 0) {
-					cat(keys.descrp[kwrd])
+					if (coloring) {
+						xcat(crayon::underline(keys.descrp[kwrd]), appendLF=FALSE, testing)
+					} else {
+						xcat(keys.descrp[kwrd], appendLF=FALSE, testing)
+					}
 				} 
 				curLine <- gsub(kwrd,"",fnLine)
-				cat('\t',curLine,'\n')
+				xcat(paste('\t',curLine,'\n'),appendLF=FALSE, testing)
 				keys.count[kwrd] <- keys.count[kwrd] + 1
 				flagKwrd <- TRUE
 			}
@@ -147,7 +218,7 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 			# check whether the line does not include keywords to skip defined in kwrds.skip, eg. "@keywords internal"
 			if (sum(sapply(kwrds.skip, grepl, fnLine)) == 0) {
 				# just a comment line without any keyword...
-				cat(fnLine,'\n')
+				xcat(paste(fnLine,'\n'),appendLF=FALSE, testing)
 			}
 		}
 	}
@@ -155,9 +226,14 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)) ){
 
     # summaryzing info...
     #if (keys.count["@usage"] == 0 )
-    cat(keys.descrp["@usage"])
+    if (coloring) {
+	#xcat(crayon::inverse(keys.descrp["@usage"]),appendLF=FALSE, testing)
+	xcat(crayon::blue(keys.descrp["@usage"]),appendLF=FALSE, testing)
+    } else {
+	xcat(keys.descrp["@usage"],appendLF=FALSE, testing)
+    }
     #if (keys.count["@fnName"] !=0) {
-		cat('\t',paste0(fnName,fn.args), '\n')
+		xcat(paste0('\t',paste0(fnName,fn.args), '\n'),,testing)
     #} else if (keys.count["@param"] != 0) {
     #		cat(keys.descrp["@param"])
     #}
@@ -257,7 +333,7 @@ help <- function(topic, package = NULL, lib.loc = NULL, verbose = getOption("ver
 			if (is.function(topic)) {
 				ehelp(topic,fn)
 			} else {
-				cat(paste0('"',fn,'"'), "defined in user-space memory but is NOT a function!",'\n\n')
+				warning(paste0('"',fn,'"'), " defined in user-space memory but is NOT a function!",'\n\n')
 			}
 		} else {
 			# check whether the topic is in the actual R help system

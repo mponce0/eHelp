@@ -3,3 +3,4 @@
 export(ehelp)
 export(help)
 importFrom(utils,capture.output)
+importFrom(utils,installed.packages)
