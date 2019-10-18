@@ -1,7 +1,12 @@
+# eHelp
+
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version-last-release/ehelp)](https://cran.r-project.org/package=ehelp)
+[![Downloads](http://cranlogs.r-pkg.org/badges/ehelp)](https://cran.r-project.org/package=ehelp)
+
 ## Introduction
 The "eHelp" (enhnaced-Help) package allow users to include "a-la-docstring" comments in their own functions and utilize the help() function to automatically provide documentation within the R session.
 
-Inspired by Python's a-la-docstring comments and the existant "docstring" R package (https://cran.r-project.org/package=docstring), the package "eHelp" attempts to offer similar functionalities by allowing comments "a-la-docstring" style to be displayed as help in user-defined functions.
+Inspired by Python's a-la-docstring comments and the existant "docstring" R package [1], the package "eHelp" attempts to offer similar functionalities by allowing comments "a-la-docstring" style to be displayed as help in user-defined functions.
 
 ### Rationale
 Documenting code is among the "best practices" to follow when developing code in a professional manner, and even when guided  generation of documentation is possible while developing R packages, we still belive that offering users a tool that allows them to document their functions using docsting comments is useful.
@@ -14,7 +19,7 @@ Unfortunately such functionality is not present in the R core and basic features
 The main reason why we decided to create this package is because we noticed several issues with the already available in R "docstring" package:
 * we have noticed that the 'docstring' package does not work with more than one function defined within a script
 * sometimes the documentation is not updated even when the function is reloaded (ie. Windows OS)
-* the package hasn't been updated or mantained since its creation in 2017 (https://github.com/dasonk/docstring)
+* the package hasn't been updated or mantained since its creation in 2017 [2]
 * we prefered to overload the "help()" function instead of the "?" one, which we find more frequently used
 * another advantage of using the "help()" function, is that tab-completion works and we have overload the function so that it cascades down to the R utils::help() function when the user-defined function is not present in the working environment.
 
@@ -54,6 +59,11 @@ and it requires that "crayon" package is available in the system.
 ## Installation
 
 For using the "eHelp" package, first you will need to install it.
+
+Thes table version can be downloaded from the CRAN repository:
+```
+install.packages("ehelp")
+```
 
 To obtain the development version you can get it from the github repository, i.e.
 ```
@@ -170,3 +180,10 @@ __Author:__	   author
 __### Usage:__
 	 myTestFn(x, y, z, t = 0)
 ```
+
+
+
+### References
+[1] https://cran.r-project.org/package=docstring
+
+[2] https://github.com/dasonk/docstring
