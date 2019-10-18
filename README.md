@@ -60,6 +60,11 @@ and it requires that "crayon" package is available in the system.
 
 For using the "eHelp" package, first you will need to install it.
 
+Thes table version can be downloaded from the CRAN repository:
+```
+install.packages("ehelp")
+```
+
 To obtain the development version you can get it from the github repository, i.e.
 ```
 # need devtools for installing from the github repo
