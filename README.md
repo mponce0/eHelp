@@ -185,4 +185,5 @@ __### Usage:__
 
 ### References
 [1] https://cran.r-project.org/package=docstring
+
 [2] https://github.com/dasonk/docstring
