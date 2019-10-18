@@ -19,7 +19,7 @@ Unfortunately such functionality is not present in the R core and basic features
 The main reason why we decided to create this package is because we noticed several issues with the already available in R "docstring" package:
 * we have noticed that the 'docstring' package does not work with more than one function defined within a script
 * sometimes the documentation is not updated even when the function is reloaded (ie. Windows OS)
-* the package hasn't been updated or mantained since its creation in 2017 (https://github.com/dasonk/docstring)
+* the package hasn't been updated or mantained since its creation in 2017 [2]
 * we prefered to overload the "help()" function instead of the "?" one, which we find more frequently used
 * another advantage of using the "help()" function, is that tab-completion works and we have overload the function so that it cascades down to the R utils::help() function when the user-defined function is not present in the working environment.
 
@@ -185,3 +185,4 @@ __### Usage:__
 
 ### References
 [1] https://cran.r-project.org/package=docstring
+[2] https://github.com/dasonk/docstring
