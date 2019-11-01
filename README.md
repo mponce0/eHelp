@@ -5,14 +5,14 @@
 -->
 
 ## Introduction
-The "eHelp" (enhnaced-Help) package allow users to include "a-la-docstring" comments in their own functions and utilize the help() function to automatically provide documentation within the R session.
+The "eHelp" (enhnaced-Help) package allows users to include "a-la-docstring" comments in their own functions and utilize the help() function to automatically provide documentation within the R session.
 
 Inspired by Python's a-la-docstring comments and the existant "docstring" R package [1], the package "eHelp" attempts to offer similar functionalities by allowing comments "a-la-docstring" style to be displayed as help in user-defined functions.
 
 ### Rationale
-Documenting code is among the "best practices" to follow when developing code in a professional manner, and even when guided  generation of documentation is possible while developing R packages, we still belive that offering users a tool that allows them to document their functions using docsting comments is useful.
+Documenting code is among the "best practices" to follow when developing code in a professional manner, and even when guided  generation of documentation is possible while developing R packages, we still belive that offering users a tool that allows them to document their functions via docstring comments is useful.
 
-Moreover it can be used for and instructing and teaching best practices while training coders that are just starting.
+Moreover it can be used for instructing and teaching best practices while training coders that are just starting.
 
 The inclusion of "docstring" comments are an useful and easy way of allowing programmers to include comments and at the same time document their codes.
 Unfortunately such functionality is not present in the R core and basic features for user-defined functions.
@@ -54,7 +54,7 @@ Some keywords are explicited ignored, such as: "@keyword internal", "@importFrom
 We have included extended functionalities to the "ehelp()" function, which allows the user to display the information about the requested function using highlighting features.
 For such functionalities to work you will have to use
    ```ehelp(Name.of.Function, coloring=TRUE)```
-and it requires that "crayon" package is available in the system.
+this requires that the "crayon" package [3] is available (installed) in the system.
 
 
 ## Installation
@@ -188,3 +188,5 @@ __### Usage:__
 [1] https://cran.r-project.org/package=docstring
 
 [2] https://github.com/dasonk/docstring
+
+[3] https://github.com/r-lib/crayon
