@@ -1,7 +1,8 @@
-# ehelp-utils.R
+# ehelp-defns.R
 #  -- M.Ponce
 
-
+#############################################################################################
+#  eHelp: palette and output format definitions
 #############################################################################################
 
 # define color palettes for customizing the output
@@ -26,19 +27,23 @@ ehelp.palette <- function(palette="color") {
                         list(crayon::bold,crayon::reset), list(crayon::bold,crayon::reset), list(crayon::bold,crayon::reset), list(crayon::underline,crayon::reset), list(crayon::underline,crayon::reset),
                         list(crayon::bold,crayon::reset), list(crayon::bold,crayon::reset), list(crayon::underline,crayon::reset) )
 
-	# code for HTML output
+	# codes for HTML output
 	html.codes <- list(list("<h1>","</h1>"),list("<i>","</i>"),list("<h2>","</h2>"),
 			list("<h3>","</h3>"),list("<b>","</b>"),list("<u>","</u>"),list("<b>","</b>"),
 			list("<h4>","</h4>"),list("<b>","</b>"),list("<u>","</u>"))
 
-	# code for LaTeX output
+	# codes for LaTeX output
 	latex.codes <- list(list("\\section*{","}\n"),list("\\begin{itemize} \\item ","\\end{itemize}"),list("\\textcolor{blue}{","}\n"),
                         list("\\textbf{","}"),list("\\emph{","}\n"),list("\\textbf{","}\n"),list("\\subsection{","}"),
                         list("\\emph{","}"),list("\\textbf{","}"),list("\\underline{","}"))
 
+	# codes for markdown
+	markdown.codes <- list(list("#",""), list("*","*"), list("```","```"),
+				list("##",""), list("###",""), list("**","**"),list("*","*"),
+				list("**","**"), list("**","**"), list("**","**"))
 
 	# combine all of them...
-        ecodes <- list(codes=codes, color=color1,bw=color2, html=html.codes, latex=latex.codes)
+        ecodes <- list(codes=codes, color=color1,bw=color2, html=html.codes, latex=latex.codes, markdown=markdown.codes)
         return(ecodes)
 }
 
@@ -48,31 +53,35 @@ ehelp.palette <- function(palette="color") {
 
 format.defns <- function(fmt,filename="",ending=NA){
 #' Function to define specifics structures, symbols and 'codes'
-#' @param  fmt   an specific file format
+#' @param  fmt   an specific file format; possible values are: txt, html, latex, markdown
+#' @param  ending  optional argument for selecting when continuing saving into the file
 #' @keywords internal
 
-	if (fmt == "txt") {
+	# TXT or ASCII
+	if ( (fmt == "txt") || (fmt == "ascii")) {
 		ending <- ""
 		sp.chars <- list()
-		lines <- "-----------------------------------------"
+		lines <- "----------------------------------------- \n"
 		struct <- ""
 		pre <- ""
 		post <- ""
 		eol <- ""
+	# HTML
 	} else if (fmt == "html") {
 		ending <- "</P> \n </BODY> \n </HTML>"
 		sp.chars <- list(list("\t","&emsp;&emsp;"),list("\n",""))
 		lines <- "<hr> \n"
 		struct <- c(
 			paste("<HEAD>
-				<TITLE>Documentation for  <<<",gsub("-eHelp.html","",filename,ignore.case=T),">>> </TITLE>
-				</HEAD>
+<TITLE>Documentation for  <<<",gsub("-eHelp.html","",filename,ignore.case=T),">>> </TITLE>
+</HEAD>
 
-				<BODY>
-			<P>"))
+<BODY>
+<P>"))
 		pre <- "<div align=\"right\"><small>"
 		post <- "</small></div> <hr>"
 		eol="<br> \n"
+	# LATEX
 	} else if (fmt == "latex") {
 		if (is.na(ending)) ending <- "\\end{document}"
 		sp.chars <- list(list("\t","  "),list("#",""),list("%","\\%"))
@@ -84,10 +93,21 @@ format.defns <- function(fmt,filename="",ending=NA){
                         "\\begin{document}",'\n',
                         '\n',"\\maketitle",'\n\n'
                         ) )
-		lines <- ""
+		lines <- ""	
+		#lines <- "\\hrule"
 		pre <- "\\flushright \n \\fbox{ \\begin{minipage}{0.85\\textwidth} \n \\flushright  \\small "
 		post <- paste(ending=paste("\\end{minipage} } \n \\flushleft \n\n",ending))
-		eol <- ""
+		eol <- "\n"
+	# MARKDOWN
+	} else if (fmt == "markdown") {
+                ending <- ""
+                sp.chars <- list()
+                lines <- "--- \n"
+                struct <- ""
+                pre <- ""
+                post <- ""
+                eol <- ""
+	# something else will default to 'nill'...
 	} else {
 		ending <- ""
 		sp.chars <- list()
@@ -99,7 +119,6 @@ format.defns <- function(fmt,filename="",ending=NA){
 	}
 
 	return(list(fmt=fmt, ending=ending, sp.chars=sp.chars, lines=lines, struct=struct, pre=pre, post=post, eol=eol))
-
 }
 
 
