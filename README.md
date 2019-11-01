@@ -1,8 +1,8 @@
 # eHelp
 
-<!--[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version-last-release/ehelp)](https://cran.r-project.org/package=ehelp)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version-last-release/ehelp)](https://cran.r-project.org/package=ehelp)
 [![Downloads](http://cranlogs.r-pkg.org/badges/ehelp)](https://cran.r-project.org/package=ehelp)
--->
+
 
 ## Introduction
 The "eHelp" (enhnaced-Help) package allows users to include "a-la-docstring" comments in their own functions and utilize the help() function to automatically provide documentation within the R session.
