@@ -69,7 +69,9 @@ write.Info <- function(filename, lines=paste0("---------------------------------
 	utils::write.table(output, file=filename,sep="", col.names=FALSE,row.names=FALSE, quote=FALSE, append=TRUE, eol=eol)
 }
 
-######################
+
+#################################################################################################
+#################################################################################################
 
 write.html <- function(X.obj, ending="</P> \n </BODY> \n </HTML>",filename){
 #' function for writing ehelp output to a local HTML file
@@ -221,11 +223,14 @@ write.fmt <- function(X.obj, format, filename, leaveOpen=FALSE){
 
 	#print(fmt)
 
+	# special consideration when the format is "ascii" => will keep ESC-codes for color
+	if (format == "ascii") format <- "color"
+
         for (line in seq_along(ehelp.txt)) {
                 lang.Code <- list("","")
                 if (X.obj$code[line] %in% formatting.codes$codes)
                         lang.Code <- formatting.codes[[format]][ formatting.codes$codes == X.obj$code[line] ][[1]]
-                ehelp.txt[line] <- paste0(lang.Code[[1]], ehelp.txt[line], lang.Code[[2]], '\n\n') 
+                ehelp.txt[line] <- paste0(lang.Code[[1]], ehelp.txt[line], lang.Code[[2]], fmt$eol) 
 
                 # replace special characters depending on the format
 		for (sp.char in fmt$sp.chars)
