@@ -61,13 +61,15 @@ processOutput <- function(ehelp.obj, fnName,fnCorpus, output) {
 #' @keywords internal
 
         # valid options are "txt", "TXT", "html", "HTML", "latex", "LATEX" or "none"
-	valid.outputFmts <- c("none ", "txt ","TXT ", "ascii", "ASCII", "html ","HTML ", "latex ","LATEX ")
+	valid.outputFmts <- c("none", "txt","TXT", "ascii","ASCII", "html","HTML", "latex","LATEX", "markdown","MARKDOWN")
 	# txt: output the help of the fn in plain "txt" 
 	if (output=="txt") {
-		write.ehelp(ehelp.obj['txt'], file=paste0(fnName,"-eHelp.txt"))
+		#write.ehelp(ehelp.obj['txt'], file=paste0(fnName,"-eHelp.txt"))
+		write.fmt(ehelp.obj,output,paste0(fnName,"-eHelp.txt"))
 	# TXT: output the help of the fn in plain "txt" + listing of the fn
 	} else if (output == "TXT") {
-                write.ehelp(ehelp.obj['txt'], file=paste0(fnName,"-eHelp.TXT"))
+                #write.ehelp(ehelp.obj['txt'], file=paste0(fnName,"-eHelp.TXT"))
+		write.fmt(ehelp.obj,output,file=paste0(fnName,"-eHelp.TXT"),leaveOpen=T)
                 write.Fncorpus(fnName, fnCorpus, file=paste0(fnName,"-eHelp.TXT"))
 	# html: output the help of the fn in HTML format
         } else if (output == "html") {
@@ -75,7 +77,8 @@ processOutput <- function(ehelp.obj, fnName,fnCorpus, output) {
 		write.fmt(ehelp.obj,output,file=paste0(fnName,"-eHelp.html"))
 	# HTML: output the help of the fn in HTML format + listing of the fn
 	} else if (output == "HTML") {
-		write.html(ehelp.obj, ending="</P>", file=paste0(fnName,"-eHelp.HTML"))
+		#write.html(ehelp.obj, ending="</P>", file=paste0(fnName,"-eHelp.HTML"))
+		write.fmt(ehelp.obj,output,file=paste0(fnName,"-eHelp.HTML"),leaveOpen=T)
 		write.Fncorpus(fnName, fnCorpus, file=paste0(fnName,"-eHelp.HTML"), begining="<p> <code>", ending="</code></p> \n </body> \n </HTML>", eol="<br> \n")
 	# latex: output the help for the dn in LaTeX format
 	} else if (output == "latex") {
@@ -88,14 +91,23 @@ processOutput <- function(ehelp.obj, fnName,fnCorpus, output) {
 			begining="\\section*{Listing}\n\\label{listing} \n \\begin{minipage}{0.75\\textwidth}\n \\small \n \\begin{verbatim}",
 			ending="\\end{verbatim} \n \\end{minipage} \n\n \\end{document}",
 			eol="\n")
+	# ascii: same as plain-txt but with ESC-codes for coloring...
 	} else if (output == "ascii") {
-		write.ascii(ehelp.obj, ending="", file=paste0(fnName,"-eHelp.asc"))
+		#write.ascii(ehelp.obj, ending="", file=paste0(fnName,"-eHelp.asc"))
+		write.fmt(ehelp.obj,output,file=paste0(fnName,"-eHelp.asc"))
 	} else if (output == "ASCII") {
-		write.ascii(ehelp.obj, ending="", file=paste0(fnName,"-eHelp.ASC"))
+		#write.ascii(ehelp.obj, ending="", file=paste0(fnName,"-eHelp.ASC"))
+		write.fmt(ehelp.obj,output,file=paste0(fnName,"-eHelp.ASC"), leaveOpen=T)
 		write.Fncorpus(fnName, fnCorpus, file=paste0(fnName,"-eHelp.ASC"))
+	} else if (output == "markdown") {
+		write.fmt(ehelp.obj,output,paste0(fnName,"-eHelp.md"))
+	} else if (output == "MARKDOWN") {
+		write.fmt(ehelp.obj,output,paste0(fnName,"-eHelp.MD"), leaveOpen=T)
+		write.Fncorpus(fnName, fnCorpus, file=paste0(fnName,"-eHelp.MD"),
+			begining="```", ending="```", eol="\n")
 	} else if (output != "none") {
 		message("The selected output format <<",output,">> is not supported. \n",
-			"Valid options are: ",paste(valid.outputFmts),"\n")
+			"Valid options are: ",paste0(valid.outputFmts,sep=" "),"\n")
 		}
 }
 
@@ -310,13 +322,16 @@ write.fmt <- function(X.obj, format, filename, leaveOpen=FALSE){
 		fmt <- format.defns(format,filename)
 	}
 
-	print(fmt)
+	#print(fmt)
+
+	# special consideration when the format is "ascii" => will keep ESC-codes for color
+	if (format == "ascii") format <- "color"
 
         for (line in seq_along(ehelp.txt)) {
                 lang.Code <- list("","")
                 if (X.obj$code[line] %in% formatting.codes$codes)
                         lang.Code <- formatting.codes[[format]][ formatting.codes$codes == X.obj$code[line] ][[1]]
-                ehelp.txt[line] <- paste0(lang.Code[[1]], ehelp.txt[line], lang.Code[[2]], '\n\n') 
+                ehelp.txt[line] <- paste0(lang.Code[[1]], ehelp.txt[line], lang.Code[[2]], fmt$eol) 
 
                 # replace special characters depending on the format
 		for (sp.char in fmt$sp.chars)
@@ -330,9 +345,8 @@ write.fmt <- function(X.obj, format, filename, leaveOpen=FALSE){
         utils::write.table(ehelp.txt,file=filename,sep="", col.names=FALSE,row.names=FALSE, quote=FALSE, eol=fmt$eol)
         write.Info(filename, lines=fmt$lines, pre=fmt$pre, post=fmt$post, eol=fmt$eol)
 
-        message(paste(filename,"saved into",getwd()))
+        message(paste(filename,"written to",getwd(),'\n'))
 }
-
 
 
 
