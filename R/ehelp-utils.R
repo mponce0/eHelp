@@ -5,7 +5,7 @@
 #############################################################################################
 ##	Utilities file for the eHelp apckage
 #
-#	Mostly IO routines
+#	print-method for ehelp.obj  &  IO routines
 #################################################################################################
 
 
@@ -114,6 +114,7 @@ processOutput <- function(ehelp.obj, fnName,fnCorpus, output) {
 
 #####################
 
+# default "write" method associated with ehelp objects...
 
 write.ehelp <- function(X.obj,filename){
 #' function for writing ehelp output to a local text file
