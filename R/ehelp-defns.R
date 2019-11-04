@@ -66,6 +66,7 @@ format.defns <- function(fmt,filename="",ending=NA){
 		pre <- ""
 		post <- ""
 		eol <- ""
+		listings <- list(begining="",ending="",eol='\n')
 	# HTML
 	} else if (fmt == "html") {
 		ending <- "</P> \n </BODY> \n </HTML>"
@@ -81,7 +82,8 @@ format.defns <- function(fmt,filename="",ending=NA){
 			) )
 		pre <- "<div align=\"right\"><small>"
 		post <- "</small></div> <hr>"
-		eol="<br> \n"
+		eol <- "<br> \n"
+		listings <- list(begining="<p> <code>",ending="</code></p> \n </body> \n </HTML>",eol=eol)
 	# LATEX
 	} else if (fmt == "latex") {
 		if (is.na(ending)) ending <- "\\end{document}"
@@ -94,11 +96,14 @@ format.defns <- function(fmt,filename="",ending=NA){
                         	"\\begin{document}",'\n',
                         	'\n',"\\maketitle",'\n\n'
                         ) )
-		lines <- ""	
+		lines <- ""
 		#lines <- "\\hrule"
 		pre <- "\\flushright \n \\fbox{ \\begin{minipage}{0.85\\textwidth} \n \\flushright  \\small "
 		post <- paste(ending=paste("\\end{minipage} } \n \\flushleft \n\n",ending))
 		eol <- "\n"
+		listings <- list(begining="\\section*{Listing}\n\\label{listing} \n \\begin{minipage}{0.75\\textwidth}\n \\small \n \\begin{verbatim}" ,
+				ending="\\end{verbatim} \n \\end{minipage} \n\n \\end{document}",
+				eol='\n')
 	# MARKDOWN
 	} else if (fmt == "markdown") {
                 ending <- ""
@@ -114,6 +119,7 @@ format.defns <- function(fmt,filename="",ending=NA){
                 pre <- ""
                 post <- ""
                 eol <- ""
+		listings <- list(begining="```",ending="```", eol="\n")
 	# something else will default to 'nill'...
 	} else {
 		ending <- ""
@@ -123,9 +129,11 @@ format.defns <- function(fmt,filename="",ending=NA){
 		pre <- ""
 		post <- ""
 		eol <- ""
+		listings <- list(begining="",ending="",eol='')
 	}
 
-	return(list(fmt=fmt, ending=ending, sp.chars=sp.chars, lines=lines, struct=struct, pre=pre, post=post, eol=eol))
+	return(list(fmt=fmt, ending=ending, sp.chars=sp.chars, lines=lines,
+			struct=struct, pre=pre, post=post, eol=eol, lst=listings))
 }
 
 
