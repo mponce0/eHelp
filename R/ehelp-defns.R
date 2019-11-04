@@ -33,7 +33,7 @@ ehelp.palette <- function(palette="color") {
 			list("<h4>","</h4>"),list("<b>","</b>"),list("<u>","</u>"))
 
 	# codes for LaTeX output
-	latex.codes <- list(list("\\section*{","}\n"),list("\\begin{itemize} \\item ","\\end{itemize}"),list("\\textcolor{blue}{","}\n"),
+	latex.codes <- list(list("\\section*{","}\n"),list("\\begin{itemize} \\item ","\\end{itemize}"),list("\\textcolor{blue}{\\tt ","}\n"),
                         list("\\textbf{","}"),list("\\emph{","}\n"),list("\\textbf{","}\n"),list("\\subsection{","}"),
                         list("\\emph{","}"),list("\\textbf{","}"),list("\\underline{","}"))
 
