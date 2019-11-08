@@ -71,13 +71,13 @@ processOutput <- function(ehelp.obj, fnName,fnCorpus, output) {
 		# define filename for saving documentation
 		fileName <- paste0(fnName,"-eHelp",'.',ext.outputs[output == valid.outputFmts])
 		# only output documentation of the fn
-		write.fmt(ehelp.obj,output,file=fileName)
+		write.fmt(ehelp.obj,output,filename=fileName)
 	# UPPER case options
 	} else if (output %in% toupper(valid.outputFmts)) {
 		# define filename for saving documentation
 		fileName <- paste0(fnName,"-eHelp",'.',toupper(ext.outputs[tolower(output) == valid.outputFmts]))
 		# output documentation of the fn
-		write.fmt(ehelp.obj,output,file=fileName, leaveOpen=T)
+		write.fmt(ehelp.obj,output,filename=fileName, leaveOpen=T)
 		# load proper style/format for output
 		fmt <- format.defns(tolower(output),filename=fileName)
 		# and listing...
