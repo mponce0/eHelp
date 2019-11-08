@@ -40,10 +40,11 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)), coloring=FALSE, tes
 #' ## the corresponding documentation of the selected fn
 #' ## Valid formats are: txt (plain-text), latex, html, markdown, ascii (text with ESC-codes for coloring)
 #' ## Additionally, capitalized versions of these formats, will also print the listing of the fn
-#' ehelp((myTestFn, output="latex")
-#' ehelp((myTestFn, output="TXT")
-#' ehelp((myTestFn, coloring=T, output="HTML")
-#' ehelp((myTestFn, coloring=T, output="ASCII")
+#' ehelp(myTestFn, output="latex")
+#' ehelp(myTestFn, output="TXT")
+#' ehelp(myTestFn, coloring=T, output="HTML")
+#' ehelp(myTestFn, coloring=T, output="ASCII")
+#' ehelp(myTestFn, coloring=T, output="markdown")
 #'
 #' @export
 
@@ -140,6 +141,7 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)), coloring=FALSE, tes
 	return(ehelp.obj)
     }
 
+    # improved version of xcat() to use generic codes from ehelp.palette
     xcat2 <- function(code, msg, ehelp.obj) {
 
 	spCodes <- ehelp.palette()
