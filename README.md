@@ -2,18 +2,19 @@
 
 <!--
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version-last-release/ehelp)](https://cran.r-project.org/package=ehelp)
-[![Downloads](http://cranlogs.r-pkg.org/badges/ehelp)](https://cran.r-project.org/package=ehelp)
+[![Downloads](https://cranlogs.r-pkg.org/badges/ehelp)](https://cran.r-project.org/package=ehelp)
 -->
 
 ## Introduction
-The "eHelp" (enhnaced-Help) package allows users to include "a-la-docstring" comments in their own functions and utilize the help() function to automatically provide documentation within the R session.
+The "eHelp" (enhnaced-Help) package allows users to include "a-la-docstring" comments in their own functions and utilize the help() function to automatically provide documentation within an R session.
 
 Inspired by Python's a-la-docstring comments and the existant "docstring" R package [1], the package "eHelp" attempts to offer similar functionalities by allowing comments "a-la-docstring" style to be displayed as help in user-defined functions.
 
 ### Rationale
-Documenting code is among the "best practices" to follow when developing code in a professional manner, and even when guided  generation of documentation is possible while developing R packages, we still belive that offering users a tool that allows them to document their functions via docstring comments is useful.
+Documenting code is among the "best practices" followed when developing code in a professional manner, and even when guided generation of documentation is possible while developing R packages, we still belive that offering users a tool that allows them to document their functions via docstring comments is useful.
 
 Moreover it can be used for instructing and teaching best practices while training coders that are just starting.
+Or, in this case the eHelp package could help package developer while prototyping their own packages, as eHelp will allow them to explore how the the help of the functions defined within their package will look like and even save this documentation in files of different formats.
 
 The inclusion of "docstring" comments are an useful and easy way of allowing programmers to include comments and at the same time document their codes.
 Unfortunately such functionality is not present in the R core and basic features for user-defined functions.
@@ -56,6 +57,27 @@ We have included extended functionalities to the "ehelp()" function, which allow
 For such functionalities to work you will have to use
    ```ehelp(Name.of.Function, coloring=TRUE)```
 this requires that the "crayon" package [3] is available (installed) in the system.
+
+
+### Saving the documentation of the functions to file in different formats
+An another additional feature of the ehelp() function, is that it can be instructed to create a file with the content of the help for a fucntion in file with an specific format.
+This is achived by indicating the argument ```output```  and any of the following values:
+
+	output	|	file format
+	--- | --- | ---
+	txt	|	plain text
+	ascii	|	similar to plain txt but including ESCape codes like the ones used for coloring the output in the R session
+	html	|	HTML format, the user can open the output with any web browser
+	latex	|	LaTeX format
+
+
+the output generated will be saved in the current working directory in a file named in the following manner:
+
+	```NameOfTheFunction-eHelp.FMT```
+
+where ```NameOfTheFunction``` is the name of the function and ```FMT``` is the correspodning extension format selected.
+
+Capitalized options are available and when used, not only the help associated with the function is saved but also the actual listing of the function too.
 
 
 ## Installation
