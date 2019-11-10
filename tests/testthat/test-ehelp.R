@@ -20,7 +20,7 @@ print("~~~~~~~~~~~~")
 
 ehelp(dummyFn)
 
-print( capture.output(cat(paste(capture.output(ehelp(dummyFn),type='message'),collapse='')),type='message') )
+print( capture.output(cat(paste(capture.output(ehelp(dummyFn)),collapse='')),type='message') )
 print( capture.output(ehelp(dummyFn),type='message') )
 
 aaa<-capture.output(ehelp(dummyFn),type='output')
@@ -40,6 +40,7 @@ test_that("testing eHelp documentation generated for user-defined functions",{
 	output.0 <- capture.output(cat(paste(capture.output(ehelp(nillFn,testing=T)),collapse='')))
 	#expectedOutput.0 <- "  ### Usage:   \tnillFn()  "
 	expectedOutput.0 <- "### Usage: \tnillFn()"
+	expectedOutput.0 <- "---------------------------------------------------------------### Usage: \tnillFn() ---------------------------------------------------------------"
 	expect_match(output.0,expectedOutput.0, fixed=TRUE)
 })
 
