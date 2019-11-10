@@ -42,9 +42,9 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)), coloring=FALSE, tes
 #' ## Additionally, capitalized versions of these formats, will also print the listing of the fn
 #' ehelp(myTestFn, output="latex")
 #' ehelp(myTestFn, output="TXT")
-#' ehelp(myTestFn, coloring=T, output="HTML")
-#' ehelp(myTestFn, coloring=T, output="ASCII")
-#' ehelp(myTestFn, coloring=T, output="markdown")
+#' ehelp(myTestFn, coloring=TRUE, output="HTML")
+#' ehelp(myTestFn, coloring=TRUE, output="ASCII")
+#' ehelp(myTestFn, coloring=TRUE, output="markdown")
 #'
 #' @export
 
