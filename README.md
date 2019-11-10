@@ -41,6 +41,7 @@ The following keywords can be used to decorate and provide details as comments i
 @fnName :  provides the name of the function
 @param  :  list the arguments and its description of the arguments expected by the function
 @descr  :  general description of the function
+@return :  description of what the function returns
 @usage  :  how the function is called
 @author :  name of the author(s) of the function
 @email  :  contact information of the author(s)
@@ -60,24 +61,33 @@ this requires that the "crayon" package [3] is available (installed) in the syst
 
 
 ### Saving the documentation of the functions to file in different formats
-An another additional feature of the ehelp() function, is that it can be instructed to create a file with the content of the help for a fucntion in file with an specific format.
-This is achived by indicating the argument ```output```  and any of the following values:
+Another additional feature of the ehelp() function, is that it can be
+instructed to create a file with the content of the help for a given function
+in file utilizing an specific file format for the output.
+This is achived by indicating the argument ```output```  and one of the
+following values:
 
 	output	|	file format
-	--- | --- | ---
+	------	|	-----------
 	txt	|	plain text
 	ascii	|	similar to plain txt but including ESCape codes like the ones used for coloring the output in the R session
 	html	|	HTML format, the user can open the output with any web browser
 	latex	|	LaTeX format
+	markdown|	Markdown format
+	---------------------------
 
-
-the output generated will be saved in the current working directory in a file named in the following manner:
+When this option is used, the output generated will be saved in the current
+working directory in a file named employing the following convention:
 
 	```NameOfTheFunction-eHelp.FMT```
 
-where ```NameOfTheFunction``` is the name of the function and ```FMT``` is the correspodning extension format selected.
+where ```NameOfTheFunction``` is the name of the function and ```FMT``` is the
+correspodning extension format selected.
 
-Capitalized options are available and when used, not only the help associated with the function is saved but also the actual listing of the function too.
+Capitalized options are also available and when used, not only the help associated
+with the function is saved in the file but also the actual listing of the
+function too.
+
 
 
 ## Installation
