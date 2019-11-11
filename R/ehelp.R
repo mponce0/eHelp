@@ -37,8 +37,12 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)), coloring=FALSE, out
 #' ## generation of documentation for a fn in different formats
 #' ## by indicating a particular format, ehelp will save in a file
 #' ## the corresponding documentation of the selected fn
-#' ## Valid formats are: txt (plain-text), latex, html, markdown, ascii (text with ESC-codes for coloring)
-#' ## Additionally, capitalized versions of these formats, will also print the listing of the fn
+#' ## Valid formats are:
+#' ## 		txt (plain-text), ascii (text with ESC-codes for coloring),
+#' ## 		latex, html, markdown
+#' ## Additionally, capitalized versions of these formats, will also include
+#' ## the listing of the fn
+#'
 #' ehelp(myTestFn, output="latex")
 #' ehelp(myTestFn, output="TXT")
 #' ehelp(myTestFn, coloring=TRUE, output="HTML")
