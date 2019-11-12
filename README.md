@@ -59,8 +59,6 @@ We have included extended functionalities to the "ehelp()" function, which allow
 For such functionalities to work you will have to use
    ```ehelp(Name.of.Function, coloring=TRUE)```
 this requires that the "crayon" package [3] is available (installed) in the system.
-<<<<<<< HEAD
-=======
 
 
 ### Saving the documentation of the functions to file in different formats
