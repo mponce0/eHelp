@@ -2,6 +2,7 @@
 
 <!--
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version-last-release/ehelp)](https://cran.r-project.org/package=ehelp)
+<<<<<<< HEAD
 [![Downloads](https://cranlogs.r-pkg.org/badges/ehelp)](https://cran.r-project.org/package=ehelp)
 -->
 
