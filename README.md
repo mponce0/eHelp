@@ -67,14 +67,14 @@ in file utilizing an specific file format for the output.
 This is achived by indicating the argument ```output```  and one of the
 following values:
 
-	output	 | file format
-	------	 | -----------
-	txt	 | plain text
-	ascii	 | similar to plain txt but including ESCape codes like the ones used for coloring the output in the R session
-	html	 | HTML format, the user can open the output with any web browser
-	latex	 | LaTeX format
-	markdown | Markdown format
-	---------------------------
+output	 | file format
+------	 | -----------
+txt	 | plain text
+ascii	 | similar to plain txt but including ESCape codes like the ones used for coloring the output in the R session
+html	 | HTML format, the user can open the output with any web browser
+latex	 | LaTeX format
+markdown | Markdown format
+---------------------------
 
 When this option is used, the output generated will be saved in the current
 working directory in a file named employing the following convention:
