@@ -43,11 +43,13 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)), coloring=FALSE, out
 #' ## Additionally, capitalized versions of these formats, will also include
 #' ## the listing of the fn
 #'
+#'\dontrun{
 #' ehelp(myTestFn, output="latex")
 #' ehelp(myTestFn, output="TXT")
 #' ehelp(myTestFn, coloring=TRUE, output="HTML")
 #' ehelp(myTestFn, coloring=TRUE, output="ASCII")
 #' ehelp(myTestFn, coloring=TRUE, output="markdown")
+#'}
 #'
 #' @export
 
