@@ -225,7 +225,7 @@ the listing of the function, eg.
 ```
 ehelp(myTestFn, output="latex")
 ```
-*myTestFn-eHelp.tex written to CURRENT_DIR*
+**myTestFn-eHelp.tex written to CURRENT_DIR**
 ...
 
 ```
