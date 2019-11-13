@@ -224,9 +224,11 @@ the listing of the function, eg.
 
 ```
 ehelp(myTestFn, output="latex")
+```
 *myTestFn-eHelp.tex written to CURRENT_DIR*
 ...
 
+```
 ehelp(myTestFn, output="TXT")
 
 ehelp(myTestFn, coloring=TRUE, output="HTML")
