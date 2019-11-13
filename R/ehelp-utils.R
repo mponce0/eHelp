@@ -21,7 +21,7 @@ print.ehelp <- function(ehelp.obj,coloring=T) {
 #' function associated to the ehelp object method
 #' @param  ehelp.obj  ehelp object
 #' @param  coloring  whether to use colors or not when displaying the help
-#' keywords internal
+#' @keywords internal
 
    # header
    lines <- paste0("---------------------------------------------------------------",'\n', sep='')
