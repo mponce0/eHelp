@@ -9,9 +9,9 @@
 \arguments{
 \item{ehelp.obj}{ehelp object}
 
-\item{coloring}{whether to use colors or not when displaying the help
-keywords internal}
+\item{coloring}{whether to use colors or not when displaying the help}
 }
 \description{
 function associated to the ehelp object method
 }
+\keyword{internal}
