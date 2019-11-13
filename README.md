@@ -215,6 +215,21 @@ __### Usage:__
 ```
 
 
+Additionaly is possible to use ehelp() for saving of documentation of a
+function into a file with an specific file format, this is acieved by specifying the ```output``` argument in ehelp().
+Available formats are:
+txt (plain-text), ascii (text with ESC-codes for coloring), latex, html, and markdown.
+Additionally, capitalized versions of these formats, will also include
+the listing of the function, eg.
+
+```
+ehelp(myTestFn, output="latex")
+ehelp(myTestFn, output="TXT")
+ehelp(myTestFn, coloring=TRUE, output="HTML")
+ehelp(myTestFn, coloring=TRUE, output="ASCII")
+ehelp(myTestFn, coloring=TRUE, output="markdown")
+```
+
 
 ### References
 [1] https://cran.r-project.org/package=docstring
