@@ -15,6 +15,7 @@ max.downloads <- max(ehelp.stats.total$count)
 fst.date <- ehelp.stats.total$date[1]
 lst.date <- ehelp.stats.total$date[length(ehelp.stats.total$date)]
 tot.days <- length(ehelp.stats.total$date)
+mnt.days <- length(ehelp.stats.lstmnt$date)
 # bins in weeks
 bins <- as.integer(tot.days/7)
 
@@ -33,6 +34,20 @@ plot(ehelp.stats.lstmnt$date,ehelp.stats.lstmnt$count, 'b', col='blue', lwd=2,
 	xlim=c(fst.date,lst.date),
 	ylim=c(0,max.downloads*1.05) )
 
+# stats from last month
+mean.lstmnt <- mean(ehelp.stats.lstmnt$count)
+print(paste("Avergge downloads last month: ",mean.lstmnt))
+lines(ehelp.stats.lstmnt$date,rep(mean.lstmnt,mnt.days), type='l', lwd=2, col='blue',
+          ann=FALSE,
+          xlim=c(fst.date,lst.date),
+          ylim=c(0,max.downloads*1.05)
+)
+text(ehelp.stats.lstmnt$date[2],1.05*mean.lstmnt, paste(as.integer(mean.lstmnt)), col='blue' )
+
+mean.total <- mean(ehelp.stats.total$count)
+
+abline(h=mean.total, lt=2, col='black')
+text(ehelp.stats.total$date[2],1.05*mean.total, paste("avg = ",as.integer(mean.total)) )
 
 # summaries
 print(summary(ehelp.stats.total))
