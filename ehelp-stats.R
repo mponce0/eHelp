@@ -1,6 +1,10 @@
 # to access the logs from CRAN
 library(cranlogs)
 
+# load aux fn
+source("ehelpStats-utils.R")
+
+
 # some params
 t0 <- '2019-10-15'
 
@@ -18,6 +22,7 @@ tot.days <- length(ehelp.stats.total$date)
 mnt.days <- length(ehelp.stats.lstmnt$date)
 # bins in weeks
 bins <- as.integer(tot.days/7)
+
 
 ### Plots
 hist(ehelp.stats.total$date,ehelp.stats.total$count,freq=T, breaks=bins)
@@ -49,6 +54,10 @@ mean.total <- mean(ehelp.stats.total$count)
 abline(h=mean.total, lt=2, col='black')
 text(ehelp.stats.total$date[2],1.05*mean.total, paste("avg = ",as.integer(mean.total)) )
 
+
+### interactive plots
+interactivePlots(ehelp.stats.total, mytitle="eHelp Package downloads counts")
+
+
 # summaries
-print(summary(ehelp.stats.total))
-print(summary(ehelp.stats.lstmnt))
+summaries(ehelp.stats.total,ehelp.stats.lstmnt)
