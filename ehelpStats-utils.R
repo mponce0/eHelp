@@ -1,33 +1,45 @@
 
 ### interactive plots
 interactivePlots <- function(downloads.data, mytitle="eHelp Package downloads counts",
-				nbrPlts = 2,
+				nbrPlts = 2, month.ln=31,
 				HTMLfile="InteractiveDWNDstats.html") {
         
         library(plotly)
 
 	tot.days <- length(downloads.data[,1])
 
-        p1 <- plot_ly(data = downloads.data, x = ~date, y = ~count,
-		mode="lines+markers", fill = 'tozeroy',
+	if (tot.days > month.ln) {
+		mnth.rng <- (tot.days-month.ln):tot.days
+		lst.mnth <- downloads.data[mnth.rng,]
+	} else {
+		lst.mnth <- downloads.data
+		mnth.rng <- 1:tot.days
+		month.ln <- tot.days
+	}
+
+        p1 <- plot_ly() %>%
+		add_trace(data = downloads.data, x = ~date, y = ~count,
+		mode="lines", fill = 'tozeroy', alpha=0.25, name="dwnlds",
                 marker = list(size = ~count,
-			color = ~count, text = paste("downloads: ",~count),
+			color = ~count, text = paste("downloads: ",~count), 
 			line = list(color = 'rgba(152, 0, 0, .8)', width = 2))) %>%
+		add_trace(x =~date[mnth.rng], y = ~count[mnth.rng], mode="lines+markers", name="LMD", line=list(width=3.5), fill='tozeroy') %>%
+		#add_ribbons(x = lst.mnth$date, ymin = lst.mnth$count*0.95, ymax = lst.mnth$count*1.05, color = I("gray95"), name = "last month") %>%
 		add_annotations(
                         x=0.15,y=1.00, xref="paper",yref="paper",
-                        text = paste("Downloads in the last month: ",'<b>',sum(downloads.data$count[(tot.days-31):tot.days]),'</b>'), showarrow = F ) %>%
+                        text = paste("Downloads in the last month: ",'<b>',sum(lst.mnth$count),'</b>'), showarrow = F ) %>%
 		add_annotations(
 			x=0.15,y=0.950, xref="paper",yref="paper",
 			text = paste("Total downloads: ",'<b>',sum(downloads.data$count),'</b>'), showarrow = F ) %>%
 		add_annotations(
 			x=0.15,y=0.975, xref="paper",yref="paper",
-			text = paste("Avg dwnlds: ",'<b>',mean(downloads.data$count[(tot.days-31):tot.days]),'</b>'), showarrow = F ) %>%
+			text = paste("Avg dwnlds: ",'<b>',mean(lst.mnth$count),'</b>'), showarrow = F ) %>%
 		add_annotations(
 			x=0.15,y=0.925, xref="paper",yref="paper",
 			text = paste("Avg per day: ",'<b>',mean(downloads.data$count),'</b>'), showarrow = F ) %>%
           layout(title = mytitle,
-                 yaxis = list(zeroline = TRUE),
-                 xaxis = list(zeroline = TRUE))
+                 xaxis = list(zeroline = TRUE), #range=c(downloads.data$date[1],downloads.data$date[tot.days])),
+                 yaxis = list(zeroline = TRUE))
         print(p1)
 
 	if (nbrPlts == 2) {
