@@ -33,10 +33,10 @@ interactivePlots <- function(downloads.data, mytitle="eHelp Package downloads co
 			text = paste("Total downloads: ",'<b>',sum(downloads.data$count),'</b>'), showarrow = F ) %>%
 		add_annotations(
 			x=0.15,y=0.975, xref="paper",yref="paper",
-			text = paste("Avg dwnlds: ",'<b>',mean(lst.mnth$count),'</b>'), showarrow = F ) %>%
+			text = paste("Avg dwnlds: ",'<b>',round(mean(lst.mnth$count),digits=2),'</b>'), showarrow = F ) %>%
 		add_annotations(
 			x=0.15,y=0.925, xref="paper",yref="paper",
-			text = paste("Avg per day: ",'<b>',mean(downloads.data$count),'</b>'), showarrow = F ) %>%
+			text = paste("Avg per day: ",'<b>',round(mean(downloads.data$count),digits=2),'</b>'), showarrow = F ) %>%
           layout(title = mytitle,
                  xaxis = list(zeroline = TRUE), #range=c(downloads.data$date[1],downloads.data$date[tot.days])),
                  yaxis = list(zeroline = TRUE))
