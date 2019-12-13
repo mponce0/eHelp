@@ -197,7 +197,7 @@ Author:	   author
 
 It is also possible to invoque the "ehelp()" function directly, and in that way further options are available:
 ```
-> help(myTestFn, coloring=TRUE)
+> ehelp(myTestFn, coloring=TRUE)
 __Function Name:__	   myTestFn 
 
  This is just an example of a dummy fn 
