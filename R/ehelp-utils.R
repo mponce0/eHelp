@@ -86,7 +86,9 @@ processOutput <- function(ehelp.obj, fnName,fnCorpus, output) {
 			#, EoL=as.character(fmt$eol)
 			, EoL=fmt$lst$eol
 			)
-	} else {
+	# check whether there was no type of output selected
+	} else if (tolower(output) != "none") {
+		# otherwise is a mistaken fortmat...
 		message("The selected output format <<",output,">> is not supported. \n",
 			"Valid options are: ",paste0(valid.outputFmts,sep=" "),"--and-- ",
 			paste0(toupper(valid.outputFmts),sep=" "),'\n')
