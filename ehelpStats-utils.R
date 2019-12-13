@@ -4,7 +4,8 @@ interactivePlots <- function(downloads.data, mytitle="eHelp Package downloads co
 				nbrPlts = 2, month.ln=31,
 				HTMLfile="InteractiveDWNDstats.html") {
         
-        library(plotly)
+        if (require(plotly) == FALSE)
+		stop("plotly not present!")
 
 	tot.days <- length(downloads.data[,1])
 
