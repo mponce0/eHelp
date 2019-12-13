@@ -71,6 +71,8 @@ interactivePlots <- function(downloads.data, mytitle="eHelp Package downloads co
 
 # summaries
 summaries <- function(data1,data2) {
+	print(paste("period: ",data1$date[1],' - ',data1$date[length(data1$date)]))
 	print(summary(data1))
+	print(paste("period: ",data1$date[1],' - ',data1$date[length(data1$date)]))
 	print(summary(data2))
 }
