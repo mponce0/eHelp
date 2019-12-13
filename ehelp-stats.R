@@ -4,6 +4,8 @@ library(cranlogs)
 # load aux fn
 source("ehelpStats-utils.R")
 
+# accept command line arguments
+args <- commandArgs(trailingOnly=TRUE)
 
 # some params
 t0 <- '2019-10-15'
@@ -42,7 +44,8 @@ plot(ehelp.stats.lstmnt$date,ehelp.stats.lstmnt$count, 'b', col='blue', lwd=2,
 
 # stats from last month
 mean.lstmnt <- mean(ehelp.stats.lstmnt$count)
-print(paste("Avergge downloads last month: ",mean.lstmnt))
+sd.lstmnt <- sd(ehelp.stats.lstmnt$count)
+print(paste("Average downloads last month: ",mean.lstmnt,"; sd=",sd.lstmnt))
 lines(ehelp.stats.lstmnt$date,rep(mean.lstmnt,mnt.days), type='l', lwd=2, col='blue',
           ann=FALSE,
           xlim=c(fst.date,lst.date),
@@ -51,19 +54,21 @@ lines(ehelp.stats.lstmnt$date,rep(mean.lstmnt,mnt.days), type='l', lwd=2, col='b
 text(ehelp.stats.lstmnt$date[2],1.075*mean.lstmnt, paste(as.integer(mean.lstmnt)), col='blue' )
 
 mean.total <- mean(ehelp.stats.total$count)
+sd.total <- sd(ehelp.stats.total$count)
 
 abline(h=mean.total, lt=2, col='black')
 text(ehelp.stats.total$date[2],1.085*mean.total, paste("avg = ",as.integer(mean.total)) )
 
 # add maximum download
-print(max.dwlds.date)
-print(max.downloads)
 points(max.dwlds.date,max.downloads, col='red', pch=19)
 text(max.dwlds.date,max.downloads*1.035,max.downloads, col='red')
 
 ### interactive plots
-interactivePlots(ehelp.stats.total, mytitle="eHelp Package downloads counts")
-
+if ( (length(args)>0) & (args[1]=="nointeractive") ) { 
+	cat("will skip interactive plots...",'\n')
+} else {
+	interactivePlots(ehelp.stats.total, mytitle="eHelp Package downloads counts")
+	}
 
 # summaries
 summaries(ehelp.stats.total,ehelp.stats.lstmnt)
