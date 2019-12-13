@@ -16,6 +16,7 @@ ehelp.stats.lstmnt <- cran_downloads("ehelp", when='last-month')
 
 # useful quantities
 max.downloads <- max(ehelp.stats.total$count)
+max.dwlds.date <- ehelp.stats.total$date[ehelp.stats.total$count == max.downloads]
 fst.date <- ehelp.stats.total$date[1]
 lst.date <- ehelp.stats.total$date[length(ehelp.stats.total$date)]
 tot.days <- length(ehelp.stats.total$date)
@@ -47,13 +48,18 @@ lines(ehelp.stats.lstmnt$date,rep(mean.lstmnt,mnt.days), type='l', lwd=2, col='b
           xlim=c(fst.date,lst.date),
           ylim=c(0,max.downloads*1.05)
 )
-text(ehelp.stats.lstmnt$date[2],1.05*mean.lstmnt, paste(as.integer(mean.lstmnt)), col='blue' )
+text(ehelp.stats.lstmnt$date[2],1.075*mean.lstmnt, paste(as.integer(mean.lstmnt)), col='blue' )
 
 mean.total <- mean(ehelp.stats.total$count)
 
 abline(h=mean.total, lt=2, col='black')
-text(ehelp.stats.total$date[2],1.05*mean.total, paste("avg = ",as.integer(mean.total)) )
+text(ehelp.stats.total$date[2],1.085*mean.total, paste("avg = ",as.integer(mean.total)) )
 
+# add maximum download
+print(max.dwlds.date)
+print(max.downloads)
+points(max.dwlds.date,max.downloads, col='red', pch=19)
+text(max.dwlds.date,max.downloads*1.035,max.downloads, col='red')
 
 ### interactive plots
 interactivePlots(ehelp.stats.total, mytitle="eHelp Package downloads counts")
