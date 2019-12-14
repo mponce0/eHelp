@@ -18,18 +18,26 @@ staticPlots <- function(pckg.stats.total,pckg.stats.lstmnt,
 
 	if (combinePlts) {
 		par(new=TRUE)
-		par(mfrow=c(3,3))
+		par(mfrow=c(4,3))
 	}
         ### histogram
         # bins in units of weeks
         bins <- as.integer(tot.days/7)
 
-        hist(pckg.stats.total$date,pckg.stats.total$count,freq=T, breaks=bins, col='gray')
-	#title("Downloads histogram")
+        hist(pckg.stats.total$date,pckg.stats.total$count, freq=T, breaks=bins, ann=FALSE,
+		col='gray', main="Downloads histogram")
+
+	#if (combinePlts) par(mfg=c(2,1))
+	hist(pckg.stats.total$count, freq=T, ann=FALSE, col='lightblue', main="")
+
+	plot(pckg.stats.total$date,pckg.stats.total$count, type="S", ann=FALSE)
 
 	# reset canvas to 1 plt per page
 	par(mfrow=c(1,1))
-	if (combinePlts) par(new=TRUE)
+	if (combinePlts) {
+		par(new=TRUE)
+		par(mar=c(2.5,1.5,7.5,2.5))
+	}
 
 	### plotting downloads per day
 	plot(pckg.stats.total$date,pckg.stats.total$count, 'b',
@@ -38,7 +46,8 @@ staticPlots <- function(pckg.stats.total,pckg.stats.lstmnt,
 		ann=FALSE, axes=FALSE )
 
 	# print some stats in the plot
-	title(main=paste("Total downloads:",sum(pckg.stats.total$count),'\n',
+	text(pckg.stats.total$date[10],max(pckg.stats.total$count),
+		paste("Total downloads:",sum(pckg.stats.total$count),'\n',
 		"Last month:",sum(pckg.stats.lstmnt$count)) )
 
 	# emphasize last month data
@@ -62,10 +71,11 @@ staticPlots <- function(pckg.stats.total,pckg.stats.lstmnt,
 
 
 #        if (combinePlts) {
-                axis(side=1,
-			at=pckg.stats.total$date[seq_along(pckg.stats.total$date)%%6==0],
-			labels=as.character.Date(pckg.stats.total$date[seq_along(pckg.stats.total$date)%%6==0], "%d-%m-%y")
-		)
+                #axis(side=1,
+		#	at=pckg.stats.total$date[seq_along(pckg.stats.total$date)%%6==0],
+		#	labels=as.character.Date(pckg.stats.total$date[seq_along(pckg.stats.total$date)%%6==0], "%d-%m-%y")
+		#)
+		axis.Date(1, at = seq(min(pckg.stats.total$date), max(pckg.stats.total$date), "weeks"))
                 axis(side=4)
 #        } else {
 #                axis(side=c(1:4))
