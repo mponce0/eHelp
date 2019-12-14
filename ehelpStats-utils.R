@@ -25,6 +25,7 @@ staticPlots <- function(pckg.stats.total,pckg.stats.lstmnt,
         bins <- as.integer(tot.days/7)
 
         hist(pckg.stats.total$date,pckg.stats.total$count,freq=T, breaks=bins, col='gray')
+	#title("Downloads histogram")
 
 	# reset canvas to 1 plt per page
 	par(mfrow=c(1,1))
@@ -33,17 +34,21 @@ staticPlots <- function(pckg.stats.total,pckg.stats.lstmnt,
 	### plotting downloads per day
 	plot(pckg.stats.total$date,pckg.stats.total$count, 'b',
 		xlim=c(fst.date,lst.date),
-		ylim=c(0,max.downloads*1.05) )
+		ylim=c(0,max.downloads*1.05) ,
+		ann=FALSE, axes=FALSE )
+
+	# print some stats in the plot
 	title(main=paste("Total downloads:",sum(pckg.stats.total$count),'\n',
 		"Last month:",sum(pckg.stats.lstmnt$count)) )
 
+	# emphasize last month data
 	par(new=TRUE)
-
 	plot(pckg.stats.lstmnt$date,pckg.stats.lstmnt$count,
 		'b', col='blue', lwd=2,
-		ann=FALSE,
+		ann=FALSE, axes=FALSE,
 		xlim=c(fst.date,lst.date),
 		ylim=c(0,max.downloads*1.05) )
+
 
 	# stats from last month
 	mean.lstmnt <- mean(pckg.stats.lstmnt$count)
@@ -52,9 +57,20 @@ staticPlots <- function(pckg.stats.total,pckg.stats.lstmnt,
 	lines(pckg.stats.lstmnt$date,rep(mean.lstmnt,mnt.days), type='l', lwd=2, col='blue',
 		ann=FALSE,
 		xlim=c(fst.date,lst.date),
-		ylim=c(0,max.downloads*1.05)
-)
+		ylim=c(0,max.downloads*1.05) )
 	text(pckg.stats.lstmnt$date[2],1.075*mean.lstmnt, paste(as.integer(mean.lstmnt)), col='blue' )
+
+
+#        if (combinePlts) {
+                axis(side=1,
+			at=pckg.stats.total$date[seq_along(pckg.stats.total$date)%%6==0],
+			labels=as.character.Date(pckg.stats.total$date[seq_along(pckg.stats.total$date)%%6==0], "%d-%m-%y")
+		)
+                axis(side=4)
+#        } else {
+#                axis(side=c(1:4))
+#        }
+
 
 	mean.total <- mean(pckg.stats.total$count)
 	sd.total <- sd(pckg.stats.total$count)
