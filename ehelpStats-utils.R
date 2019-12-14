@@ -1,3 +1,77 @@
+### static plots
+staticPlots <- function(pckg.stats.total,pckg.stats.lstmnt,
+			fileName="DWNLDS_ehelp.pdf", combinePlts=FALSE){
+
+	# informing where the plot is going to be saved
+	message("Saving static plots in ",fileName)
+
+	# useful quantities
+	max.downloads <- max(pckg.stats.total$count)
+	max.dwlds.date <- pckg.stats.total$date[pckg.stats.total$count == max.downloads]
+	fst.date <- pckg.stats.total$date[1]
+	lst.date <- pckg.stats.total$date[length(pckg.stats.total$date)]
+	tot.days <- length(pckg.stats.total$date)
+	mnt.days <- length(pckg.stats.lstmnt$date)
+
+	# open PDF file
+	pdf(fileName)
+
+	if (combinePlts) {
+		par(new=TRUE)
+		par(mfrow=c(3,3))
+	}
+        ### histogram
+        # bins in units of weeks
+        bins <- as.integer(tot.days/7)
+
+        hist(pckg.stats.total$date,pckg.stats.total$count,freq=T, breaks=bins, col='gray')
+
+	# reset canvas to 1 plt per page
+	par(mfrow=c(1,1))
+	if (combinePlts) par(new=TRUE)
+
+	### plotting downloads per day
+	plot(pckg.stats.total$date,pckg.stats.total$count, 'b',
+		xlim=c(fst.date,lst.date),
+		ylim=c(0,max.downloads*1.05) )
+	title(main=paste("Total downloads:",sum(pckg.stats.total$count),'\n',
+		"Last month:",sum(pckg.stats.lstmnt$count)) )
+
+	par(new=TRUE)
+
+	plot(pckg.stats.lstmnt$date,pckg.stats.lstmnt$count,
+		'b', col='blue', lwd=2,
+		ann=FALSE,
+		xlim=c(fst.date,lst.date),
+		ylim=c(0,max.downloads*1.05) )
+
+	# stats from last month
+	mean.lstmnt <- mean(pckg.stats.lstmnt$count)
+	sd.lstmnt <- sd(pckg.stats.lstmnt$count)
+	message(paste("Average downloads last month: ",mean.lstmnt,"; sd=",sd.lstmnt))
+	lines(pckg.stats.lstmnt$date,rep(mean.lstmnt,mnt.days), type='l', lwd=2, col='blue',
+		ann=FALSE,
+		xlim=c(fst.date,lst.date),
+		ylim=c(0,max.downloads*1.05)
+)
+	text(pckg.stats.lstmnt$date[2],1.075*mean.lstmnt, paste(as.integer(mean.lstmnt)), col='blue' )
+
+	mean.total <- mean(pckg.stats.total$count)
+	sd.total <- sd(pckg.stats.total$count)
+
+	abline(h=mean.total, lt=2, col='black')
+	text(pckg.stats.total$date[2],1.085*mean.total, paste("avg = ",as.integer(mean.total)) )
+
+	# add maximum download
+	points(max.dwlds.date,max.downloads, col='red', pch=19)
+	text(max.dwlds.date,max.downloads*1.035,max.downloads, col='red')
+
+
+	# Close file
+	dev.off()
+}
+
+
 
 ### interactive plots
 interactivePlots <- function(downloads.data, mytitle="eHelp Package downloads counts",
