@@ -28,6 +28,7 @@ bins <- as.integer(tot.days/7)
 
 
 ### Plots
+pdf(file="DWNLDS_ehelp.pdf")
 hist(ehelp.stats.total$date,ehelp.stats.total$count,freq=T, breaks=bins)
 
 plot(ehelp.stats.total$date,ehelp.stats.total$count, 'b',
@@ -62,6 +63,7 @@ text(ehelp.stats.total$date[2],1.085*mean.total, paste("avg = ",as.integer(mean.
 # add maximum download
 points(max.dwlds.date,max.downloads, col='red', pch=19)
 text(max.dwlds.date,max.downloads*1.035,max.downloads, col='red')
+dev.off()
 
 ### interactive plots
 if ( (length(args)>0) & (args[1]=="nointeractive") ) { 
