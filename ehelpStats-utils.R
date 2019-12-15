@@ -36,7 +36,7 @@ staticPlots <- function(pckg.stats.total,pckg.stats.lstmnt,
 	par(mfrow=c(1,1))
 	if (combinePlts) {
 		par(new=TRUE)
-		par(mar=c(2.5,1.5,7.5,2.5))
+		par(mar=c(2.5,1.5,6.5,2.5))
 	}
 
 	### plotting downloads per day
