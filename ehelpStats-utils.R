@@ -28,7 +28,7 @@ staticPlots <- function(pckg.stats.total,pckg.stats.lstmnt,
 		col='gray', main="Downloads histogram")
 
 	#if (combinePlts) par(mfg=c(2,1))
-	hist(pckg.stats.total$count, freq=T, ann=FALSE, col='lightblue', main="")
+	hist(pckg.stats.total$count, freq=T, ann=FALSE, col='lightgray', main="")
 
 	plot(pckg.stats.total$date,pckg.stats.total$count, type="S", ann=FALSE)
 
@@ -53,7 +53,7 @@ staticPlots <- function(pckg.stats.total,pckg.stats.lstmnt,
 	# emphasize last month data
 	par(new=TRUE)
 	plot(pckg.stats.lstmnt$date,pckg.stats.lstmnt$count,
-		'b', col='blue', lwd=2,
+		'b', col='darkblue', lwd=2,
 		ann=FALSE, axes=FALSE,
 		xlim=c(fst.date,lst.date),
 		ylim=c(0,max.downloads*1.05) )
@@ -63,11 +63,11 @@ staticPlots <- function(pckg.stats.total,pckg.stats.lstmnt,
 	mean.lstmnt <- mean(pckg.stats.lstmnt$count)
 	sd.lstmnt <- sd(pckg.stats.lstmnt$count)
 	message(paste("Average downloads last month: ",mean.lstmnt,"; sd=",sd.lstmnt))
-	lines(pckg.stats.lstmnt$date,rep(mean.lstmnt,mnt.days), type='l', lwd=2, col='blue',
+	lines(pckg.stats.lstmnt$date,rep(mean.lstmnt,mnt.days), type='l', lwd=2, col='darkblue',
 		ann=FALSE,
 		xlim=c(fst.date,lst.date),
 		ylim=c(0,max.downloads*1.05) )
-	text(pckg.stats.lstmnt$date[2],1.075*mean.lstmnt, paste(as.integer(mean.lstmnt)), col='blue' )
+	text(pckg.stats.lstmnt$date[2],1.075*mean.lstmnt, paste(as.integer(mean.lstmnt)), col='darkblue' )
 
 
 #        if (combinePlts) {
@@ -89,8 +89,8 @@ staticPlots <- function(pckg.stats.total,pckg.stats.lstmnt,
 	text(pckg.stats.total$date[2],1.085*mean.total, paste("avg = ",as.integer(mean.total)) )
 
 	# add maximum download
-	points(max.dwlds.date,max.downloads, col='red', pch=19)
-	text(max.dwlds.date,max.downloads*1.035,max.downloads, col='red')
+	points(max.dwlds.date,max.downloads, col='darkred', pch=19)
+	text(max.dwlds.date,max.downloads*1.035,max.downloads, col='darkred')
 
 
 	# Close file
