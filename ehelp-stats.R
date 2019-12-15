@@ -5,6 +5,8 @@ library(cranlogs)
 source("ehelpStats-utils.R")
 
 # accept command line arguments
+# possible values: nostatic, nointeractive, nocombined
+# defaults are to generate static & interactive plots, and combined static plots
 args <- commandArgs(trailingOnly=TRUE)
 
 # some params
@@ -18,11 +20,20 @@ ehelp.stats.lstmnt <- cran_downloads("ehelp", when='last-month')
 
 
 ### Plots
-staticPlots(ehelp.stats.total,ehelp.stats.lstmnt, combinePlts=TRUE)
+if ('nostatic' %in% tolower(args)) {
+	message("Will skip static plots...")
+} else {
+	if ('nocombined' %in% tolower(args)) {
+		cmb <- FALSE
+	} else {
+		cmb <- TRUE
+	}
+	staticPlots(ehelp.stats.total,ehelp.stats.lstmnt, combinePlts=cmb)
+	}
 
 ### interactive plots
-if ( (length(args)>0) & (args[1]=="nointeractive") ) { 
-	cat("will skip interactive plots...",'\n')
+if ( "nointeractive" %in% tolower(args) ) { 
+	message("will skip interactive plots...")
 } else {
 	interactivePlots(ehelp.stats.total, mytitle="eHelp Package downloads counts")
 	}
