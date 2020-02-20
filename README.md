@@ -236,7 +236,8 @@ ehelp(myTestFn, coloring=TRUE, output="markdown")
 
 ### Stats
 <p align="center">
-	<img src="https://github.com/mponce0/R.pckgs.stats/blob/master/DWNLDS_ehelp.png" width="65%" />
+	<img src="https://github.com/mponce0/R.pckgs.stats/blob/master/DWNLDS_ehelp.png" width="65%" alt="Download stats"/>
+	<figcaption>"Live" download stats, figure generated using "Visualize.CRAN.Downloads"</figcaption>
 </p>
 
 <object data="https://github.com/mponce0/R.pckgs.stats/blob/master/DWNLDS_ehelp.pdf" type="application/pdf" width="700px" height="700px">
