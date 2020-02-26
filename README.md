@@ -1,7 +1,10 @@
 # eHelp
 
+<!-- badges: start -->
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version-last-release/ehelp)](https://cran.r-project.org/package=ehelp)
-[![Downloads](https://cranlogs.r-pkg.org/badges/ehelp)](https://cran.r-project.org/package=ehelp)
+[![CRAN checks](https://cranchecks.info/badges/worst/ehelp)](https://cranchecks.info/pkgs/ehelp)
+[![Downloads last.mnth](https://cranlogs.r-pkg.org/badges/ehelp)](https://cran.r-project.org/package=ehelp)
+<!-- badges: end -->
 
 ## Introduction
 The "eHelp" (enhnaced-Help) package allows users to include "a-la-docstring" comments in their own functions and utilize the help() function to automatically provide documentation within an R session.
@@ -235,12 +238,21 @@ ehelp(myTestFn, coloring=TRUE, output="markdown")
 ```
 
 ### Stats
+<!-- badges: start -->
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version-last-release/ehelp)](https://cran.r-project.org/package=ehelp)
+[![CRAN checks](https://cranchecks.info/badges/worst/ehelp)](https://cranchecks.info/pkgs/ehelp)
+[![Downloads last.mnth](https://cranlogs.r-pkg.org/badges/ehelp)](https://cran.r-project.org/package=ehelp)
+[![Downloads last.day](https://cranlogs.r-pkg.org/badges/last-week/ehelp)](https://cran.r-project.org/package=ehelp)
+[![Downloads last.day](https://cranlogs.r-pkg.org/badges/last-day/ehelp)](https://cran.r-project.org/package=ehelp)
+<!-- badges: end -->
+
 <p align="center">
 	<img src="https://github.com/mponce0/R.pckgs.stats/blob/master/DWNLDS_ehelp.png" width="65%" alt="Download stats"/>
 	<figcaption>"Live" download stats, figure generated using "Visualize.CRAN.Downloads"</figcaption>
 </p>
 
 <object data="https://github.com/mponce0/R.pckgs.stats/blob/master/DWNLDS_ehelp.pdf" type="application/pdf" width="700px" height="700px">
+
 
 
 ### References
