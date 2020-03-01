@@ -30,6 +30,15 @@ The main reason why we decided to create this package is because we noticed seve
 * we prefered to overload the "help()" function instead of the "?" one, which we find more frequently used
 * another advantage of using the "help()" function, is that tab-completion works and we have overload the function so that it cascades down to the R utils::help() function when the user-defined function is not present in the working environment.
 
+## eHelp Main Functions:
+
+function   |  desription
+---        |  ---
+`ehelp`    |  main function to provide help based on docstring comments for user-defined functions
+`help`     |  wrapper around R's basic help function, that offload user defined functions to the ehelp() function
+`eexample` | function that runs examples from user defined functions
+---
+
 ### Features
 The "eHelp" package attempts to provide documentation for user-defined functions based on decorated "a-la-docstring" comments included in the function's definition.
 It does this by employing a really "simple" approach in the sense that it does not attempt to generate roxygen based documentation for the user-defined functions, but instead it just displays the information decorated with  _#'_ directly into the console.
