@@ -130,7 +130,10 @@ install.packages("devtools")
 
 # install eHelp
 devtools::install_github("mponce0/eHelp")
+```
 
+After installing the package, you need to load it, i.e.
+```
 # load eHelp
 library(eHelp)
 ```
