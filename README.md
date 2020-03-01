@@ -7,9 +7,12 @@
 <!-- badges: end -->
 
 ## Introduction
-The "eHelp" (enhnaced-Help) package allows users to include "a-la-docstring" comments in their own functions and utilize the help() function to automatically provide documentation within an R session.
+The "eHelp" (enhnaced-Help) package allows users to include "a-la-docstring" comments in their own functions and utilize the `help()` function to automatically provide documentation within an R session.
 
 Inspired by Python's a-la-docstring comments and the existant "docstring" R package [1], the package "eHelp" attempts to offer similar functionalities by allowing comments "a-la-docstring" style to be displayed as help in user-defined functions.
+
+In addition to that, "eHelp" provides a function `eexample()` analog to R's basic `example()` function which allows the user to run examples in user-defined functions.
+
 
 ### Rationale
 Documenting code is among the "best practices" followed when developing code in a professional manner, and even when guided generation of documentation is possible while developing R packages, we still belive that offering users a tool that allows them to document their functions via docstring comments is useful.
@@ -48,6 +51,7 @@ The following keywords can be used to decorate and provide details as comments i
 @email  :  contact information of the author(s)
 @repo   :  repository where to get the function from
 @ref    :  any suitable reference needed
+@examples :  include examples of how to use user-defined function
 ```
 
 Further keywords can be added on-demand, please contact the developer if you would like to add other keywords to the list.
@@ -89,6 +93,16 @@ Capitalized options are also available and when used, not only the help associat
 with the function is saved in the file but also the actual listing of the
 function too.
 
+
+### Running examples from user-defined functions
+The eHelp's `eexample()` function will use the `ehelp()` function to determine whether
+there are examples included in user-defined functions and run them, similarly to what
+R's `example()` functions does for system and/or library ones.
+For that, the keyword `@examples` should be included in the user-defined comments.
+The `eexample` function can distinguish between the "\donttest{}-\dontrun{}-\dontshow{}"
+indicators.
+By default the `eexample` function will run all the examples, but an optional argument
+`skip.donts` can be used to skip and avoid running these examples.
 
 
 ## Installation
