@@ -197,7 +197,7 @@ myTestFn <- function(x,y,z,t=0) {
 #
 #
 #' @demo
-#' @example myTestFn(x0,y0,z0)
+#' @examples myTestFn(x0,y0,z0)
 }
 ```
 ```
