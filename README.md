@@ -35,8 +35,8 @@ The main reason why we decided to create this package is because we noticed seve
 function   |  desription
 ---        |  ---
 `ehelp`    |  main function to provide help based on docstring comments for user-defined functions
-`help`     |  wrapper around R's basic help function, that offload user defined functions to the ehelp() function
-`eexample` | function that runs examples from user defined functions
+`help`     |  wrapper around R's basic help function, that offloads user-defined functions to the ehelp() function
+`eexample` | function that runs examples from user-defined functions
 ---
 
 ### Features
