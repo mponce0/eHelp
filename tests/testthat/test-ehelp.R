@@ -66,7 +66,7 @@ expect_match(output.2,expectedOutput.2, fixed=TRUE)
 test_that("testing eHelp documentation generated for user-defined functions",{
 	output.3 <- utils::capture.output(cat(paste(utils::capture.output(ehelp(myTestFn)),collapse='')))
 	expectedOutput.3 <- #"Function Name:\t   myTestFn       This fn does not do anything other than having docstrings comments      Arguments:   \t   x BH position in x-axis   \t   y BH position in y-axis   \t   z BH position in z-axis   \t   t time to merger      Contact:\t   mponcec@gmail.com   Author:\t   mponce    @demo     ### Examples:   \t   myBHFn(x0,y0,z0)     ### Usage:   \t myTestFn(x, y, z, t, W)  "
-				"Function Name:\t   myTestFn   This fn does not do anything other than having docstrings comments  Arguments: \t   x BH position in x-axis \t   y BH position in y-axis \t   z BH position in z-axis \t   t time to merger  Contact:\t   mponcec@gmail.com Author:\t   mponce  @demo  @example myBHFn(x0,y0,z0) ### Usage: \tmyTestFn(x, y, z, t, W)"
+				"Function Name:\t   myTestFn   This fn does not do anything other than having docstrings comments  Arguments: \t   x BH position in x-axis \t   y BH position in y-axis \t   z BH position in z-axis \t   t time to merger  Contact:\t   mponcec@gmail.com Author:\t   mponce  @demo ### Examples: \t   myTestFn(x0,y0,z0) ### Usage: \tmyTestFn(x, y, z, t, W)"
 expect_match(output.3,expectedOutput.3, fixed=TRUE)
 })
 
