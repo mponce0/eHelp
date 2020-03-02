@@ -58,7 +58,12 @@ eexample <- function(..., skip.donts=FALSE) {
 		}
 
 		cat("#####  Number of commands ran from the examples ",fnName,": ",examples.run,"   #####",'\n')
-		if (examples.run == 0 & skip.donts)
+		if (examples.run == 0 & skip.donts) {
 			cat("#####  Note: skipping ",paste(donts,collapse='-')," examples, you can run these by setting skip.donts=FALSE",'\n')
+		}# else if (examples.run == 0) {
+		#	cat("##### No examples found in ",fnName,'\n')
+		#}
+	} else {
+		cat("##### No examples found in ",fnName,'\n')
 	}
 }
