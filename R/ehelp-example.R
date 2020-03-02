@@ -46,7 +46,8 @@ eexample <- function(..., skip.donts=FALSE) {
 				if ( !donts.activated | !skip.donts) {
 					# cat(donts.activated, " -- ",target.line,'\n')
 					cat(paste0(fnName,">> "), ehelp.output[next.line], '\n')
-					eval(parse(text=ehelp.output[next.line]))
+					X <- eval(parse(text=ehelp.output[next.line]))
+					if (!is.null(X)) print(X)
 					if (nchar(trimws(target.line)) > 0) examples.run <- examples.run + 1
 				}
 			} else {
