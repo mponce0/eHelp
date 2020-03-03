@@ -45,6 +45,6 @@ myTestFn <- function(x,y,z,t,
 #
 #
 #' @demo
-#' @example myBHFn(x0,y0,z0)
+#' @examples myTestFn(x0,y0,z0)
 }
 
