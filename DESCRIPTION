@@ -1,6 +1,6 @@
 Package: ehelp
 Title: Enhanced Help to Enable "Docstring"-Comments in Users Functions
-Version: 1.1.1
+Version: 1.2
 Authors@R: 
     person(given = "Marcelo",
            family = "Ponce",
