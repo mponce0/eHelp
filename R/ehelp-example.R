@@ -7,6 +7,9 @@ eexample <- function(..., skip.donts=FALSE) {
 #' @export
 #'
 
+	# check that there is only one argument
+	if (length(list(...)) != 1) stop("Please indicate the name of a function to run its examples.")
+
 	# process fn
 	ehelp.output <- capture.output(ehelp(...))
 
