@@ -37,8 +37,9 @@ The main reason why we decided to create this package is because we noticed seve
 function   |  desription
 ---        |  ---
 `ehelp`    |  main function to provide help based on docstring comments for user-defined functions
-`help`     |  wrapper around R's basic help function, that offloads user-defined functions to the ehelp() function
+`help`     |  wrapper around R's basic help function, that offloads user-defined functions to the `ehelp()` function
 `eexample` | function that runs examples from user-defined functions
+`simulatePackage` | function that loads R files within a given directory, similar to what the `library()` function would do with an installed package
 ---
 
 ### Features
