@@ -11,8 +11,10 @@ The "eHelp" (enhnaced-Help) package allows users to include "a-la-docstring" com
 
 Inspired by Python's a-la-docstring comments and the existant "docstring" R package [1], the package "eHelp" attempts to offer similar functionalities by allowing comments "a-la-docstring" style to be displayed as help in user-defined functions.
 
-In addition to that, "eHelp" provides a function `eexample()` analog to R's basic `example()` function which allows the user to run examples in user-defined functions.
-
+The "eHelp" package also provides a few more functions aimed to assist
+in the development and prototyping the functions and R package:
+* the function `eexample()`, analog to R's basic `example()` function, allows users to run examples in user-defined functions.
+* the function `simulatePackage()`, will load the fuctions from an specified directory, mimicking the load of a package which includes the definition of these functions.
 
 ### Rationale
 Documenting code is among the "best practices" followed when developing code in a professional manner, and even when guided generation of documentation is possible while developing R packages, we still belive that offering users a tool that allows them to document their functions via docstring comments is useful.
