@@ -1,4 +1,6 @@
 eexample <- function(..., skip.donts=FALSE) {
+# will use ellipsis '...' to adquire the function's name
+#
 #' function that allows to execute the examples from user defined functions
 #'
 #' @param  ...  function name of a user defined fn
@@ -9,6 +11,7 @@ eexample <- function(..., skip.donts=FALSE) {
 
 	# check that there is only one argument
 	if (length(list(...)) != 1) stop("Please indicate the name of a function to run its examples.")
+	#print(eval(parse(text=...)))
 
 	# process fn
 	ehelp.output <- capture.output(ehelp(...))
