@@ -7,17 +7,17 @@
 <!-- badges: end -->
 
 ## Introduction
-The "eHelp" (enhnaced-Help) package allows users to include "a-la-docstring" comments in their own functions and utilize the `help()` function to automatically provide documentation within an R session.
+The "eHelp" (enhanced-Help) package allows users to include "a-la-docstring" comments in their own functions and utilize the `help()` function to automatically provide documentation within an R session.
 
-Inspired by Python's a-la-docstring comments and the existant "docstring" R package [1], the package "eHelp" attempts to offer similar functionalities by allowing comments "a-la-docstring" style to be displayed as help in user-defined functions.
+Inspired by Python's a-la-docstring comments and the existent "docstring" R package [1], the package "eHelp" attempts to offer similar functionalities by allowing comments "a-la-docstring" style to be displayed as help in user-defined functions.
 
 The "eHelp" package also provides a few more functions aimed to assist
 in the development and prototyping the functions and R package:
 * the function `eexample()`, analog to R's basic `example()` function, allows users to run examples in user-defined functions.
-* the function `simulatePackage()`, will load the fuctions from an specified directory, mimicking the load of a package which includes the definition of these functions.
+* the function `simulatePackage()`, will load the functions from an specified directory, mimicking the load of a package which includes the definition of these functions.
 
 ### Rationale
-Documenting code is among the "best practices" followed when developing code in a professional manner, and even when guided generation of documentation is possible while developing R packages, we still belive that offering users a tool that allows them to document their functions via docstring comments is useful.
+Documenting code is among the "best practices" followed when developing code in a professional manner, and even when guided generation of documentation is possible while developing R packages, we still believe that offering users a tool that allows them to document their functions via docstring comments is useful.
 
 Moreover it can be used for instructing and teaching best practices while training coders that are just starting.
 Or, in this case the eHelp package could help package developer while prototyping their own packages, as eHelp will allow them to explore how the the help of the functions defined within their package will look like and even save this documentation in files of different formats.
@@ -28,13 +28,13 @@ Unfortunately such functionality is not present in the R core and basic features
 The main reason why we decided to create this package is because we noticed several issues with the already available in R "docstring" package:
 * we have noticed that the 'docstring' package does not work with more than one function defined within a script
 * sometimes the documentation is not updated even when the function is reloaded (ie. Windows OS)
-* the package hasn't been updated or mantained since its creation in 2017 [2]
-* we prefered to overload the "help()" function instead of the "?" one, which we find more frequently used
+* the package hasn't been updated or maintained since its creation in 2017 [2]
+* we preferred to overload the "help()" function instead of the "?" one, which we find more frequently used
 * another advantage of using the "help()" function, is that tab-completion works and we have overload the function so that it cascades down to the R utils::help() function when the user-defined function is not present in the working environment.
 
 ## eHelp Main Functions:
 
-function   |  desription
+function   |  description
 ---        |  ---
 `ehelp`    |  main function to provide help based on docstring comments for user-defined functions
 `help`     |  wrapper around R's basic help function, that offloads user-defined functions to the `ehelp()` function
@@ -45,7 +45,7 @@ function   |  desription
 ### Features
 The "eHelp" package attempts to provide documentation for user-defined functions based on decorated "a-la-docstring" comments included in the function's definition.
 It does this by employing a really "simple" approach in the sense that it does not attempt to generate roxygen based documentation for the user-defined functions, but instead it just displays the information decorated with  _#'_ directly into the console.
-This, we belive, in this particular case represents an advantage, specially considering that the package is aimed to provide help for user-defined functions. For instance, one of the reported issues with the "docstring" package is that the documentation generated wasn't updated after the user-definitions were updated and re-sourced. 
+This, we believe, in this particular case represents an advantage, specially considering that the package is aimed to provide help for user-defined functions. For instance, one of the reported issues with the "docstring" package is that the documentation generated wasn't updated after the user-definitions were updated and re-sourced. 
 
 Comments with docstrings should be included within the function definition, as eHelp will look into the body of the function for this type of comments.
 
@@ -68,7 +68,7 @@ The following keywords can be used to decorate and provide details as comments i
 
 Further keywords can be added on-demand, please contact the developer if you would like to add other keywords to the list.
 
-Some keywords are explicited ignored, such as: "@keyword internal", "@importFrom", "@export"; as these won't contribute much to the usage of the user-defined functions.
+Some keywords are explicitly ignored, such as: "@keyword internal", "@importFrom", "@export"; as these won't contribute much to the usage of the user-defined functions.
 
 ### Highlighting
 We have included extended functionalities to the "ehelp()" function, which allows the user to display the information about the requested function using highlighting features.
@@ -81,7 +81,7 @@ this requires that the "crayon" package [3] is available (installed) in the syst
 Another additional feature of the ehelp() function, is that it can be
 instructed to create a file with the content of the help for a given function
 in file utilizing an specific file format for the output.
-This is achived by indicating the argument ```output```  and one of the
+This is achieved by indicating the argument ```output```  and one of the
 following values:
 
 output	 | file format
@@ -99,7 +99,7 @@ working directory in a file named employing the following convention:
 	NameOfTheFunction-eHelp.FMT
 
 where ```NameOfTheFunction``` is the name of the function and ```FMT``` is the
-correspodning extension format selected.
+corresponding extension format selected.
 
 Capitalized options are also available and when used, not only the help associated
 with the function is saved in the file but also the actual listing of the
@@ -121,7 +121,7 @@ By default the `eexample` function will run all the examples, but an optional ar
 
 For using the "eHelp" package, first you will need to install it.
 
-Thes table version can be downloaded from the CRAN repository:
+The stable version can be downloaded from the CRAN repository:
 ```
 install.packages("ehelp")
 ```
@@ -143,7 +143,7 @@ library(eHelp)
 
 ## How does it work?
 After loading the "eHelp" package, the function help() from the R system will be overloaded ("masked") by a wrapper function that allows us to redirect the calls to the help() function either to our eHelp() function or to the R's core help() one.
-When the wrapper function detects that help is being invoqued in an user-defined function, then it offload the call to our own eHelp() function. The eHelp() function will parse the content of the inquired function looking for comments decorated with #' and parse them depending on their content. In particular, it will take special care of the comments including any of the keywords described above and the usage of the function.
+When the wrapper function detects that help is being invoked in an user-defined function, then it offload the call to our own eHelp() function. The eHelp() function will parse the content of the inquired function looking for comments decorated with #' and parse them depending on their content. In particular, it will take special care of the comments including any of the keywords described above and the usage of the function.
 
 
 ## Examples
@@ -191,7 +191,7 @@ Arguments:
 ```
 
 
-Even when the @fnName and @params are not definied, the usage will be generated based on the actual function definition:
+Even when the @fnName and @params are not defined, the usage will be generated based on the actual function definition:
 ```
 myTestFn <- function(x,y,z,t=0) {
 #'
@@ -226,7 +226,7 @@ Author:	   author
 
 
 
-It is also possible to invoque the "ehelp()" function directly, and in that way further options are available:
+It is also possible to invoke the "ehelp()" function directly, and in that way further options are available:
 ```
 > ehelp(myTestFn, coloring=TRUE)
 __Function Name:__	   myTestFn 
@@ -246,8 +246,8 @@ __### Usage:__
 ```
 
 
-Additionaly is possible to use ehelp() for saving of documentation of a
-function into a file with an specific file format, this is acieved by specifying the ```output``` argument in ehelp().
+Additionally is possible to use ehelp() for saving of documentation of a
+function into a file with an specific file format, this is achieved by specifying the ```output``` argument in ehelp().
 Available formats are:
 txt (plain-text), ascii (text with ESC-codes for coloring), latex, html, and markdown.
 Additionally, capitalized versions of these formats, will also include
