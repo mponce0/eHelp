@@ -1,6 +1,6 @@
 Package: ehelp
 Title: Enhanced Help to Enable "Docstring"-Comments in Users Functions
-Version: 1.1.1
+Version: 1.2
 Authors@R: 
     person(given = "Marcelo",
            family = "Ponce",
@@ -8,7 +8,7 @@ Authors@R:
            email = "mponce@scinet.utoronto.ca")
 Author: Marcelo Ponce [aut, cre]
 Maintainer: Marcelo Ponce <mponce@scinet.utoronto.ca>
-Description: By overloading the R help() function, this package allows users to use "docstring" style comments within their own defined functions.
+Description: By overloading the R help() function, this package allows users to use "docstring" style comments within their own defined functions. The pacakge also provides additional functions to mimic the R basic example() function and the prototyping of packages.
 URL: https://github.com/mponce0/eHelp
 BugReports: https://github.com/mponce0/eHelp/issues
 License: GPL (>=2)

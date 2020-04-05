@@ -7,9 +7,14 @@
 <!-- badges: end -->
 
 ## Introduction
-The "eHelp" (enhnaced-Help) package allows users to include "a-la-docstring" comments in their own functions and utilize the help() function to automatically provide documentation within an R session.
+The "eHelp" (enhnaced-Help) package allows users to include "a-la-docstring" comments in their own functions and utilize the `help()` function to automatically provide documentation within an R session.
 
 Inspired by Python's a-la-docstring comments and the existant "docstring" R package [1], the package "eHelp" attempts to offer similar functionalities by allowing comments "a-la-docstring" style to be displayed as help in user-defined functions.
+
+The "eHelp" package also provides a few more functions aimed to assist
+in the development and prototyping the functions and R package:
+* the function `eexample()`, analog to R's basic `example()` function, allows users to run examples in user-defined functions.
+* the function `simulatePackage()`, will load the fuctions from an specified directory, mimicking the load of a package which includes the definition of these functions.
 
 ### Rationale
 Documenting code is among the "best practices" followed when developing code in a professional manner, and even when guided generation of documentation is possible while developing R packages, we still belive that offering users a tool that allows them to document their functions via docstring comments is useful.
@@ -26,6 +31,16 @@ The main reason why we decided to create this package is because we noticed seve
 * the package hasn't been updated or mantained since its creation in 2017 [2]
 * we prefered to overload the "help()" function instead of the "?" one, which we find more frequently used
 * another advantage of using the "help()" function, is that tab-completion works and we have overload the function so that it cascades down to the R utils::help() function when the user-defined function is not present in the working environment.
+
+## eHelp Main Functions:
+
+function   |  desription
+---        |  ---
+`ehelp`    |  main function to provide help based on docstring comments for user-defined functions
+`help`     |  wrapper around R's basic help function, that offloads user-defined functions to the `ehelp()` function
+`eexample` | function that runs examples from user-defined functions
+`simulatePackage` | function that loads R files within a given directory, similar to what the `library()` function would do with an installed package
+---
 
 ### Features
 The "eHelp" package attempts to provide documentation for user-defined functions based on decorated "a-la-docstring" comments included in the function's definition.
@@ -48,6 +63,7 @@ The following keywords can be used to decorate and provide details as comments i
 @email  :  contact information of the author(s)
 @repo   :  repository where to get the function from
 @ref    :  any suitable reference needed
+@examples :  include examples of how to use user-defined function
 ```
 
 Further keywords can be added on-demand, please contact the developer if you would like to add other keywords to the list.
@@ -90,6 +106,16 @@ with the function is saved in the file but also the actual listing of the
 function too.
 
 
+### Running examples from user-defined functions
+The eHelp's `eexample()` function will use the `ehelp()` function to determine whether
+there are examples included in user-defined functions and run them, similarly to what
+R's `example()` functions does for system and/or library ones.
+For that, the keyword `@examples` should be included in the user-defined comments.
+The `eexample` function can distinguish between the "\donttest{}-\dontrun{}-\dontshow{}"
+indicators.
+By default the `eexample` function will run all the examples, but an optional argument
+`skip.donts` can be used to skip and avoid running these examples.
+
 
 ## Installation
 
@@ -107,7 +133,10 @@ install.packages("devtools")
 
 # install eHelp
 devtools::install_github("mponce0/eHelp")
+```
 
+After installing the package, you need to load it, i.e.
+```
 # load eHelp
 library(eHelp)
 ```
@@ -174,7 +203,7 @@ myTestFn <- function(x,y,z,t=0) {
 #
 #
 #' @demo
-#' @example myTestFn(x0,y0,z0)
+#' @examples myTestFn(x0,y0,z0)
 }
 ```
 ```
