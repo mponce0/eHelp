@@ -51,6 +51,7 @@ ehelp <-function(fun, fn.name=as.character(substitute(fun)), coloring=FALSE, out
 #' ehelp(myTestFn, coloring=TRUE, output="ASCII")
 #' ehelp(myTestFn, coloring=TRUE, output="markdown")
 #'}
+#'
 
     ####################
     # define structure for the ehelp-object

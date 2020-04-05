@@ -6,8 +6,10 @@ simulatePackage <- function(pkgLocation=NULL) {
 #' @param  pkgLocation  path to the base loaction of the package, under which
 #' is expected to found the R sub-directory 
 #'
-#' @examples
-#' simulatePackage("myPckg")
+#' @export
+#'
+#' #@examples
+#' #simulatePackage("myPckg")
 #'
 
 	checkPkgLocation <- function(pkgLoc) {

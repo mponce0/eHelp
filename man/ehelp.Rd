@@ -62,5 +62,6 @@ ehelp(myTestFn, coloring=TRUE, output="HTML")
 ehelp(myTestFn, coloring=TRUE, output="ASCII")
 ehelp(myTestFn, coloring=TRUE, output="markdown")
 }
+
 }
 \keyword{internal}
