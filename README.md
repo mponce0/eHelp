@@ -266,6 +266,29 @@ ehelp(myTestFn, coloring=TRUE, output="ASCII")
 ehelp(myTestFn, coloring=TRUE, output="markdown")
 ```
 
+
+### How to Cite this Package
+```R
+> citation("ehelp")
+
+To cite package ‘ehelp’ in publications use:
+
+  Marcelo Ponce (2019). ehelp: Enhanced Help to Enable
+  "Docstring"-Comments in Users Functions. R package version 1.1.1.
+  https://CRAN.R-project.org/package=ehelp
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {ehelp: Enhanced Help to Enable "Docstring"-Comments in Users Functions},
+    author = {Marcelo Ponce},
+    year = {2019},
+    note = {R package version 1.1.1},
+    url = {https://CRAN.R-project.org/package=ehelp},
+  }
+```
+
+
 ### Stats
 <!-- badges: start -->
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version-last-release/ehelp)](https://cran.r-project.org/package=ehelp)
