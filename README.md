@@ -2,7 +2,9 @@
 
 <!-- badges: start -->
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version-last-release/ehelp)](https://cran.r-project.org/package=ehelp)
-[![CRAN checks](https://cranchecks.info/badges/worst/ehelp)](https://cranchecks.info/pkgs/ehelp)
+<!--[![CRAN checks](https://cranchecks.info/badges/worst/ehelp)](https://cranchecks.info/pkgs/ehelp) -->
+[![cran checks](https://badges.cranchecks.info/worst/ehelp.svg)](https://cran.r-project.org/web/checks/check_results_ehelp.html)
+[![cran checks](https://badges.cranchecks.info/summary/ehelp.svg)](https://cran.r-project.org/web/checks/check_results_ehelp.html)
 [![Downloads last.mnth](https://cranlogs.r-pkg.org/badges/ehelp)](https://cran.r-project.org/package=ehelp)
 <!-- badges: end -->
 
