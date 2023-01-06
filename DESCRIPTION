@@ -5,7 +5,7 @@ Authors@R:
     person(given = "Marcelo",
            family = "Ponce",
            role = c("aut", "cre"),
-           email = "mponce@scinet.utoronto.ca")
+           email = "m.ponce@utoronto.ca")
 Author: Marcelo Ponce [aut, cre]
 Maintainer: Marcelo Ponce <m.ponce@utoronto.ca>
 Description: By overloading the R help() function, this package allows users to use "docstring" style comments within their own defined functions. The package also provides additional functions to mimic the R basic example() function and the prototyping of packages.
